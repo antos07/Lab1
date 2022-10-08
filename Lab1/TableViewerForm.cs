@@ -12,9 +12,13 @@ namespace Lab1
 {
     public partial class TableViewerForm : Form
     {
-        public TableViewerForm()
+        private readonly Controller _controller;
+
+        public TableViewerForm(Controller controller)
         {
             InitializeComponent();
+
+            _controller = controller;
         }
 
         private void TableViewerForm_Load(object sender, EventArgs e)

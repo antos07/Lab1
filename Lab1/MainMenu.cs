@@ -2,7 +2,7 @@ namespace Lab1
 {
     public partial class MainMenu : Form
     {
-        private Controller _controller;
+        private readonly Controller _controller;
 
         public MainMenu(Controller controller)
         {
@@ -28,17 +28,17 @@ namespace Lab1
         {
             MessageBox.Show(filename);
 
-            TableViewerForm tableViewerForm = new();
-            this.Hide();
+            using TableViewerForm tableViewerForm = new(_controller);
+            Hide();
 
             tableViewerForm.ShowDialog();
-            this.Close();
+            Close();
         }
 
         private void showProgramInfoButton_Click(object sender, EventArgs e)
         {
-            using (AboutBox aboutBox = new())
-                aboutBox.ShowDialog(this);
+            using AboutBox aboutBox = new();
+            aboutBox.ShowDialog(this);
         }
 
         private void showHelpButton_Click(object sender, EventArgs e)
