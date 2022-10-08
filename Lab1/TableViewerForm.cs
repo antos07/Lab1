@@ -25,10 +25,5 @@ namespace Lab1
         {
 
         }
-
-        private void релагуанняToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }

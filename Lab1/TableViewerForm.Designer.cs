@@ -70,7 +70,6 @@
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
             this.editToolStripMenuItem.Size = new System.Drawing.Size(212, 45);
             this.editToolStripMenuItem.Text = "Редагування";
-            this.editToolStripMenuItem.Click += new System.EventHandler(this.релагуанняToolStripMenuItem_Click);
             // 
             // helpToolStripMenuItem
             // 
