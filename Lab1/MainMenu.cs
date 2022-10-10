@@ -43,7 +43,8 @@ namespace Lab1
 
         private void showHelpButton_Click(object sender, EventArgs e)
         {
-            
+            using HelpForm helpForm = new();
+            helpForm.ShowDialog(this);
         }
     }
 }
