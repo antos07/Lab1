@@ -26,7 +26,7 @@ namespace Lab1
 
         private void OpenTable(string? filename = null)
         {
-            MessageBox.Show(filename);
+            MessageBox.Show(this, filename);
 
             using TableViewerForm tableViewerForm = new(_controller);
             Hide();

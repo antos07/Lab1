@@ -30,16 +30,16 @@
         {
             this.TableViewerMenuStrip = new System.Windows.Forms.MenuStrip();
             this.MenuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.TableDataGridView = new System.Windows.Forms.DataGridView();
             this.createNewTableToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openTabelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveTableToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openHelpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutProgramToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tableDataGridView = new System.Windows.Forms.DataGridView();
             this.TableViewerMenuStrip.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.TableDataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tableDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // TableViewerMenuStrip
@@ -65,6 +65,24 @@
             this.MenuToolStripMenuItem.Size = new System.Drawing.Size(126, 45);
             this.MenuToolStripMenuItem.Text = "Меню";
             // 
+            // createNewTableToolStripMenuItem
+            // 
+            this.createNewTableToolStripMenuItem.Name = "createNewTableToolStripMenuItem";
+            this.createNewTableToolStripMenuItem.Size = new System.Drawing.Size(430, 54);
+            this.createNewTableToolStripMenuItem.Text = "Нова таблиця";
+            // 
+            // openTabelToolStripMenuItem
+            // 
+            this.openTabelToolStripMenuItem.Name = "openTabelToolStripMenuItem";
+            this.openTabelToolStripMenuItem.Size = new System.Drawing.Size(430, 54);
+            this.openTabelToolStripMenuItem.Text = "Відкрити таблицю";
+            // 
+            // saveTableToolStripMenuItem
+            // 
+            this.saveTableToolStripMenuItem.Name = "saveTableToolStripMenuItem";
+            this.saveTableToolStripMenuItem.Size = new System.Drawing.Size(430, 54);
+            this.saveTableToolStripMenuItem.Text = "Зберегти у файл";
+            // 
             // editToolStripMenuItem
             // 
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
@@ -80,53 +98,41 @@
             this.helpToolStripMenuItem.Size = new System.Drawing.Size(150, 45);
             this.helpToolStripMenuItem.Text = "Довідка";
             // 
-            // TableDataGridView
-            // 
-            this.TableDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.TableDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TableDataGridView.Location = new System.Drawing.Point(0, 49);
-            this.TableDataGridView.Name = "TableDataGridView";
-            this.TableDataGridView.RowHeadersWidth = 102;
-            this.TableDataGridView.RowTemplate.Height = 49;
-            this.TableDataGridView.Size = new System.Drawing.Size(1943, 1052);
-            this.TableDataGridView.TabIndex = 1;
-            // 
-            // createNewTableToolStripMenuItem
-            // 
-            this.createNewTableToolStripMenuItem.Name = "createNewTableToolStripMenuItem";
-            this.createNewTableToolStripMenuItem.Size = new System.Drawing.Size(448, 54);
-            this.createNewTableToolStripMenuItem.Text = "Нова таблиця";
-            // 
-            // openTabelToolStripMenuItem
-            // 
-            this.openTabelToolStripMenuItem.Name = "openTabelToolStripMenuItem";
-            this.openTabelToolStripMenuItem.Size = new System.Drawing.Size(448, 54);
-            this.openTabelToolStripMenuItem.Text = "Відкрити таблицю";
-            // 
-            // saveTableToolStripMenuItem
-            // 
-            this.saveTableToolStripMenuItem.Name = "saveTableToolStripMenuItem";
-            this.saveTableToolStripMenuItem.Size = new System.Drawing.Size(448, 54);
-            this.saveTableToolStripMenuItem.Text = "Зберегти у файл";
-            // 
             // openHelpToolStripMenuItem
             // 
             this.openHelpToolStripMenuItem.Name = "openHelpToolStripMenuItem";
-            this.openHelpToolStripMenuItem.Size = new System.Drawing.Size(448, 54);
+            this.openHelpToolStripMenuItem.Size = new System.Drawing.Size(340, 54);
             this.openHelpToolStripMenuItem.Text = "Допомога";
             // 
             // aboutProgramToolStripMenuItem
             // 
             this.aboutProgramToolStripMenuItem.Name = "aboutProgramToolStripMenuItem";
-            this.aboutProgramToolStripMenuItem.Size = new System.Drawing.Size(448, 54);
+            this.aboutProgramToolStripMenuItem.Size = new System.Drawing.Size(340, 54);
             this.aboutProgramToolStripMenuItem.Text = "О програмі";
+            // 
+            // tableDataGridView
+            // 
+            this.tableDataGridView.AllowUserToAddRows = false;
+            this.tableDataGridView.AllowUserToDeleteRows = false;
+            this.tableDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.tableDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableDataGridView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
+            this.tableDataGridView.Location = new System.Drawing.Point(0, 49);
+            this.tableDataGridView.MultiSelect = false;
+            this.tableDataGridView.Name = "tableDataGridView";
+            this.tableDataGridView.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
+            this.tableDataGridView.RowTemplate.Height = 49;
+            this.tableDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+            this.tableDataGridView.ShowEditingIcon = false;
+            this.tableDataGridView.Size = new System.Drawing.Size(1943, 1052);
+            this.tableDataGridView.TabIndex = 1;
             // 
             // TableViewerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(17F, 41F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1943, 1101);
-            this.Controls.Add(this.TableDataGridView);
+            this.Controls.Add(this.tableDataGridView);
             this.Controls.Add(this.TableViewerMenuStrip);
             this.MainMenuStrip = this.TableViewerMenuStrip;
             this.Name = "TableViewerForm";
@@ -134,7 +140,7 @@
             this.Load += new System.EventHandler(this.TableViewerForm_Load);
             this.TableViewerMenuStrip.ResumeLayout(false);
             this.TableViewerMenuStrip.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.TableDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tableDataGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -146,7 +152,7 @@
         private ToolStripMenuItem MenuToolStripMenuItem;
         private ToolStripMenuItem editToolStripMenuItem;
         private ToolStripMenuItem helpToolStripMenuItem;
-        private DataGridView TableDataGridView;
+        private DataGridView tableDataGridView;
         private ToolStripMenuItem createNewTableToolStripMenuItem;
         private ToolStripMenuItem openTabelToolStripMenuItem;
         private ToolStripMenuItem saveTableToolStripMenuItem;

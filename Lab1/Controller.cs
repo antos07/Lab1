@@ -14,5 +14,15 @@ namespace Lab1
 
         public void OpenTable(string filename) 
         { }
+
+        public int GetColumnsNumber()
+        {
+            return 20;
+        }
+
+        public int GetRowsNumber()
+        {
+            return 50;
+        }
     }
 }
