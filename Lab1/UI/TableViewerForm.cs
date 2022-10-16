@@ -35,11 +35,15 @@ namespace Lab1
             if (cell.Value != null)
             {
                 cell.ErrorText = String.Empty;
-                MessageBox.Show(cell.Value.ToString());
+                _controller.UpdateExpressionInCell(GetCellID(cell), cell.Value.ToString());
+                MessageBox.Show(GetCellID(cell) + ": " + cell.Value.ToString());
             }
-            else
+        }
 
-                cell.ErrorText = "Empty";
+
+        private static string GetCellID(DataGridViewCell cell)
+        {
+            return cell.OwningColumn.HeaderCell.Value.ToString() + cell.OwningRow.HeaderCell.Value.ToString();
         }
         #endregion
 

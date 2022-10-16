@@ -32,5 +32,20 @@ namespace Lab1
         {
             return 50;
         }
+
+        public void UpdateExpressionInCell(string cell, string? expression)
+        {
+
+        }
+
+        public string GetCellValue(string cell)
+        {
+            return String.Empty;
+        }
+
+        public string GetCellExpression(string cell)
+        {
+            return String.Empty;
+        }
     }
 }
