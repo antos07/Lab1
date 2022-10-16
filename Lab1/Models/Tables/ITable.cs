@@ -9,6 +9,10 @@ namespace Lab1.Models.Tables
 {
     public interface ITable
     {
+        public int ColumnsNamber { get; }
+
+        public int RowsNamber { get; }
+
         public ICell GetCell(string cell);
 
         public Dictionary<string, ICell> ExportCells();

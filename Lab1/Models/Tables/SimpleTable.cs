@@ -11,6 +11,10 @@ namespace Lab1.Models.Tables
     {
         private Dictionary<string, SimpleCell> _cells;
 
+        public int ColumnsNamber => 20;
+
+        public int RowsNamber => 50;
+
         public ICell GetCell(string cell)
         {
             if (!_cells.ContainsKey(cell))
