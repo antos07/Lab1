@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Lab1.Models.Expressions
 {
-    internal interface IExpression
+    public interface IExpression
     {
         string ToString();
 

@@ -7,8 +7,8 @@ using Lab1.Models.Expressions;
 
 namespace Lab1.Parsers
 {
-    internal interface IParser
+    public interface IParser
     {
-        IExpression ParseExpression(string expression);
+        public IExpression ParseExpression(string expression);
     }
 }

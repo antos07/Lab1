@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Lab1.Parsers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,6 +10,13 @@ namespace Lab1
 {
     public class Controller
     {
+        private readonly IParser _parser;
+
+        public Controller(IParser parser)
+        {
+            _parser = parser;
+        }
+
         public void CreteTable()
         { }
 

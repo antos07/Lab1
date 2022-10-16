@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Lab1.Parsers
 {
-    internal class SimpleParser : IParser
+    public class SimpleParser : IParser
     {
         public IExpression ParseExpression(string expression)
         {
