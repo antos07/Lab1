@@ -1,0 +1,15 @@
+﻿using Lab1.Models.Expressions;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Lab1.Models.Cells
+{
+    internal interface ICell
+    {
+        public IExpression? Expression { get; set; }
+        public string Value { get; }
+    }
+}

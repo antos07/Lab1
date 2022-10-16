@@ -16,4 +16,8 @@
     <AssemblyName>E-Tables</AssemblyName>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Models\Tables\" />
+  </ItemGroup>
+
 </Project>
