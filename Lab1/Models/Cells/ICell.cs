@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Lab1.Models.Cells
 {
-    internal interface ICell
+    public interface ICell
     {
         public IExpression? Expression { get; set; }
         public string Value { get; }
