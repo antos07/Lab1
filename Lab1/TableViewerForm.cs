@@ -17,15 +17,38 @@ namespace Lab1
         public TableViewerForm(Controller controller)
         {
             InitializeComponent();
+            SetupHandlers();
 
             _controller = controller;
         }
+
+
+        #region Additional handlers setup
+        private void SetupHandlers() 
+        {
+            tableDataGridView.CellEndEdit += tableDataGridView_CellEndEdit;
+        }
+
+        private void tableDataGridView_CellEndEdit(object sender, DataGridViewCellEventArgs e) 
+        {
+            DataGridViewCell cell = tableDataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex];
+            if (cell.Value != null)
+            {
+                cell.ErrorText = String.Empty;
+                MessageBox.Show(cell.Value.ToString());
+            }
+            else
+
+                cell.ErrorText = "Empty";
+        }
+        #endregion
+
+        #region tableDataGridView setup
 
         private void TableViewerForm_Load(object sender, EventArgs e)
         {
             SetupTableDataGridView();
         }
-
 
         private void SetupTableDataGridView()
         {
@@ -33,6 +56,9 @@ namespace Lab1
             SetupTableRows();
         }
 
+        /// <summary> 
+        /// Method <c>SetupTableColumns</c> setups columns layout of <c>tableDatagridView</c>.
+        /// </summary>
         private void SetupTableColumns()
         {
             for (int i = 0; i < _controller.GetColumnsNumber(); i++)
@@ -73,5 +99,7 @@ namespace Lab1
                 row.HeaderCell.Value = (row.Index + 1).ToString();
             }    
         }
+
+        #endregion
     }
 }

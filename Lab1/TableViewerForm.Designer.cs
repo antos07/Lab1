@@ -68,19 +68,19 @@
             // createNewTableToolStripMenuItem
             // 
             this.createNewTableToolStripMenuItem.Name = "createNewTableToolStripMenuItem";
-            this.createNewTableToolStripMenuItem.Size = new System.Drawing.Size(430, 54);
+            this.createNewTableToolStripMenuItem.Size = new System.Drawing.Size(448, 54);
             this.createNewTableToolStripMenuItem.Text = "Нова таблиця";
             // 
             // openTabelToolStripMenuItem
             // 
             this.openTabelToolStripMenuItem.Name = "openTabelToolStripMenuItem";
-            this.openTabelToolStripMenuItem.Size = new System.Drawing.Size(430, 54);
+            this.openTabelToolStripMenuItem.Size = new System.Drawing.Size(448, 54);
             this.openTabelToolStripMenuItem.Text = "Відкрити таблицю";
             // 
             // saveTableToolStripMenuItem
             // 
             this.saveTableToolStripMenuItem.Name = "saveTableToolStripMenuItem";
-            this.saveTableToolStripMenuItem.Size = new System.Drawing.Size(430, 54);
+            this.saveTableToolStripMenuItem.Size = new System.Drawing.Size(448, 54);
             this.saveTableToolStripMenuItem.Text = "Зберегти у файл";
             // 
             // editToolStripMenuItem
