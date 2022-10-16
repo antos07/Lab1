@@ -4,12 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Lab1
+namespace Lab1.Parsers
 {
-    internal interface IExpression
+    internal class SimpleParser
     {
-        string ToString();
-
-        string Calculate();
     }
 }

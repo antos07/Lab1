@@ -1,4 +1,4 @@
-namespace Lab1
+namespace Lab1.UI
 {
     public partial class MainMenu : Form
     {
