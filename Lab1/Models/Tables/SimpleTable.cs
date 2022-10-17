@@ -9,7 +9,7 @@ namespace Lab1.Models.Tables
 {
     public class SimpleTable : ITable
     {
-        private Dictionary<string, SimpleCell> _cells;
+        private Dictionary<string, SimpleCell> _cells = new Dictionary<string, SimpleCell>();
 
         public int ColumnsNamber => 20;
 
@@ -18,7 +18,7 @@ namespace Lab1.Models.Tables
         public ICell GetCell(string cell)
         {
             if (!_cells.ContainsKey(cell))
-                _cells.Add(cell, new SimpleCell());
+                _cells.Add(cell, new SimpleCell(this));
             return _cells[cell];
         }
 

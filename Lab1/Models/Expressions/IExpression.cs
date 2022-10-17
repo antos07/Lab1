@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Lab1.Models.Tables;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,6 +11,6 @@ namespace Lab1.Models.Expressions
     {
         string ToString();
 
-        string Calculate();
+        string Calculate(ITable forTable);
     }
 }

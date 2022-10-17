@@ -13,6 +13,7 @@ namespace Lab1.UI
 
         private void createTableButton_Click(object sender, EventArgs e)
         {
+            _controller.CreteTable();
             OpenTable();
         }
 
@@ -20,14 +21,13 @@ namespace Lab1.UI
         {
             if (openTableDialog.ShowDialog() == DialogResult.OK)
             {
-                OpenTable(openTableDialog.FileName);
+                _controller.OpenTable(openTableDialog.FileName);
+                OpenTable();
             }
         }
 
-        private void OpenTable(string? filename = null)
+        private void OpenTable()
         {
-            MessageBox.Show(this, filename);
-
             using TableViewerForm tableViewerForm = new(_controller);
             Hide();
 
