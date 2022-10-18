@@ -35,7 +35,7 @@ using ParserRuleContext = Antlr4.Runtime.ParserRuleContext;
 [System.CLSCompliant(false)]
 public partial class ExpressionsBaseVisitor<Result> : AbstractParseTreeVisitor<Result>, IExpressionsVisitor<Result> {
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="ExpressionsParser.boolean_expression"/>.
+	/// Visit a parse tree produced by <see cref="ExpressionsParser.booleanExpression"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -43,9 +43,9 @@ public partial class ExpressionsBaseVisitor<Result> : AbstractParseTreeVisitor<R
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitBoolean_expression([NotNull] ExpressionsParser.Boolean_expressionContext context) { return VisitChildren(context); }
+	public virtual Result VisitBooleanExpression([NotNull] ExpressionsParser.BooleanExpressionContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="ExpressionsParser.comparison_operator"/>.
+	/// Visit a parse tree produced by <see cref="ExpressionsParser.comparisonOperator"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -53,9 +53,9 @@ public partial class ExpressionsBaseVisitor<Result> : AbstractParseTreeVisitor<R
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitComparison_operator([NotNull] ExpressionsParser.Comparison_operatorContext context) { return VisitChildren(context); }
+	public virtual Result VisitComparisonOperator([NotNull] ExpressionsParser.ComparisonOperatorContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="ExpressionsParser.boolean_operator"/>.
+	/// Visit a parse tree produced by <see cref="ExpressionsParser.booleanOperator"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -63,9 +63,9 @@ public partial class ExpressionsBaseVisitor<Result> : AbstractParseTreeVisitor<R
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitBoolean_operator([NotNull] ExpressionsParser.Boolean_operatorContext context) { return VisitChildren(context); }
+	public virtual Result VisitBooleanOperator([NotNull] ExpressionsParser.BooleanOperatorContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="ExpressionsParser.arithmetic_expression"/>.
+	/// Visit a parse tree produced by <see cref="ExpressionsParser.arithmeticExpression"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -73,9 +73,9 @@ public partial class ExpressionsBaseVisitor<Result> : AbstractParseTreeVisitor<R
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitArithmetic_expression([NotNull] ExpressionsParser.Arithmetic_expressionContext context) { return VisitChildren(context); }
+	public virtual Result VisitArithmeticExpression([NotNull] ExpressionsParser.ArithmeticExpressionContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="ExpressionsParser.arithmetic_operator"/>.
+	/// Visit a parse tree produced by <see cref="ExpressionsParser.arithmeticOperator"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -83,7 +83,7 @@ public partial class ExpressionsBaseVisitor<Result> : AbstractParseTreeVisitor<R
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitArithmetic_operator([NotNull] ExpressionsParser.Arithmetic_operatorContext context) { return VisitChildren(context); }
+	public virtual Result VisitArithmeticOperator([NotNull] ExpressionsParser.ArithmeticOperatorContext context) { return VisitChildren(context); }
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="ExpressionsParser.function"/>.
 	/// <para>
@@ -95,7 +95,7 @@ public partial class ExpressionsBaseVisitor<Result> : AbstractParseTreeVisitor<R
 	/// <return>The visitor result.</return>
 	public virtual Result VisitFunction([NotNull] ExpressionsParser.FunctionContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="ExpressionsParser.cell_id"/>.
+	/// Visit a parse tree produced by <see cref="ExpressionsParser.cellId"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -103,5 +103,5 @@ public partial class ExpressionsBaseVisitor<Result> : AbstractParseTreeVisitor<R
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitCell_id([NotNull] ExpressionsParser.Cell_idContext context) { return VisitChildren(context); }
+	public virtual Result VisitCellId([NotNull] ExpressionsParser.CellIdContext context) { return VisitChildren(context); }
 }

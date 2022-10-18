@@ -32,35 +32,35 @@ using IToken = Antlr4.Runtime.IToken;
 [System.CLSCompliant(false)]
 public interface IExpressionsVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="ExpressionsParser.boolean_expression"/>.
+	/// Visit a parse tree produced by <see cref="ExpressionsParser.booleanExpression"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitBoolean_expression([NotNull] ExpressionsParser.Boolean_expressionContext context);
+	Result VisitBooleanExpression([NotNull] ExpressionsParser.BooleanExpressionContext context);
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="ExpressionsParser.comparison_operator"/>.
+	/// Visit a parse tree produced by <see cref="ExpressionsParser.comparisonOperator"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitComparison_operator([NotNull] ExpressionsParser.Comparison_operatorContext context);
+	Result VisitComparisonOperator([NotNull] ExpressionsParser.ComparisonOperatorContext context);
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="ExpressionsParser.boolean_operator"/>.
+	/// Visit a parse tree produced by <see cref="ExpressionsParser.booleanOperator"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitBoolean_operator([NotNull] ExpressionsParser.Boolean_operatorContext context);
+	Result VisitBooleanOperator([NotNull] ExpressionsParser.BooleanOperatorContext context);
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="ExpressionsParser.arithmetic_expression"/>.
+	/// Visit a parse tree produced by <see cref="ExpressionsParser.arithmeticExpression"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitArithmetic_expression([NotNull] ExpressionsParser.Arithmetic_expressionContext context);
+	Result VisitArithmeticExpression([NotNull] ExpressionsParser.ArithmeticExpressionContext context);
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="ExpressionsParser.arithmetic_operator"/>.
+	/// Visit a parse tree produced by <see cref="ExpressionsParser.arithmeticOperator"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitArithmetic_operator([NotNull] ExpressionsParser.Arithmetic_operatorContext context);
+	Result VisitArithmeticOperator([NotNull] ExpressionsParser.ArithmeticOperatorContext context);
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="ExpressionsParser.function"/>.
 	/// </summary>
@@ -68,9 +68,9 @@ public interface IExpressionsVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitFunction([NotNull] ExpressionsParser.FunctionContext context);
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="ExpressionsParser.cell_id"/>.
+	/// Visit a parse tree produced by <see cref="ExpressionsParser.cellId"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitCell_id([NotNull] ExpressionsParser.Cell_idContext context);
+	Result VisitCellId([NotNull] ExpressionsParser.CellIdContext context);
 }

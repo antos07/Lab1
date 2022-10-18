@@ -5,13 +5,13 @@ grammar Expressions;
  */
 
 // available operators and functions: +, -, *, /, <, >, =, not(x), max(x, y), min(x, y), and, or, >=, <=, <> 
-boolean_expression:
-	NOT? OPENING_BRACKET boolean_expression CLOSING_BRACKET
-	| boolean_expression boolean_operator boolean_expression
-	| arithmetic_expression comparison_operator arithmetic_expression
-	| cell_id;
+booleanExpression:
+	NOT? OPENING_BRACKET booleanExpression CLOSING_BRACKET
+	| booleanExpression booleanOperator booleanExpression
+	| arithmeticExpression comparisonOperator arithmeticExpression
+	| cellId;
 
-comparison_operator:
+comparisonOperator:
 	EQUAL
 	| LESS
 	| LESS_EQUAL
@@ -19,15 +19,15 @@ comparison_operator:
 	| GREATER_EQUAL
 	| NOT_EQUAL;
 
-boolean_operator: OR | AND;
+booleanOperator: OR | AND;
 
-arithmetic_expression:
-	OPENING_BRACKET arithmetic_expression CLOSING_BRACKET
-	| arithmetic_expression arithmetic_operator arithmetic_expression
-	| function OPENING_BRACKET arithmetic_expression COMMA arithmetic_expression CLOSING_BRACKET
+arithmeticExpression:
+	OPENING_BRACKET arithmeticExpression CLOSING_BRACKET
+	| arithmeticExpression arithmeticOperator arithmeticExpression
+	| function OPENING_BRACKET arithmeticExpression COMMA arithmeticExpression CLOSING_BRACKET
 	| SIGNED_NUMBER;
 
-arithmetic_operator:
+arithmeticOperator:
 	PLUS
 	| MINUS
 	| MULTIPLY
@@ -37,7 +37,7 @@ arithmetic_operator:
 
 function: MAX | MIN;
 
-cell_id: UPPERCASE_LETTER+ UNSIGNED_NUMBER;
+cellId: UPPERCASE_LETTER+ UNSIGNED_NUMBER;
 
 /*
  * Lexer Rules

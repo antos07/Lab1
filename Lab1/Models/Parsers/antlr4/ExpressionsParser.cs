@@ -41,12 +41,12 @@ public partial class ExpressionsParser : Parser {
 		PLUS=14, MINUS=15, MULTIPLY=16, DIVIDE=17, MOD=18, DIV=19, MAX=20, MIN=21, 
 		UPPERCASE_LETTER=22, UNSIGNED_NUMBER=23;
 	public const int
-		RULE_boolean_expression = 0, RULE_comparison_operator = 1, RULE_boolean_operator = 2, 
-		RULE_arithmetic_expression = 3, RULE_arithmetic_operator = 4, RULE_function = 5, 
-		RULE_cell_id = 6;
+		RULE_booleanExpression = 0, RULE_comparisonOperator = 1, RULE_booleanOperator = 2, 
+		RULE_arithmeticExpression = 3, RULE_arithmeticOperator = 4, RULE_function = 5, 
+		RULE_cellId = 6;
 	public static readonly string[] ruleNames = {
-		"boolean_expression", "comparison_operator", "boolean_operator", "arithmetic_expression", 
-		"arithmetic_operator", "function", "cell_id"
+		"booleanExpression", "comparisonOperator", "booleanOperator", "arithmeticExpression", 
+		"arithmeticOperator", "function", "cellId"
 	};
 
 	private static readonly string[] _LiteralNames = {
@@ -89,56 +89,56 @@ public partial class ExpressionsParser : Parser {
 		Interpreter = new ParserATNSimulator(this, _ATN, decisionToDFA, sharedContextCache);
 	}
 
-	public partial class Boolean_expressionContext : ParserRuleContext {
+	public partial class BooleanExpressionContext : ParserRuleContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode OPENING_BRACKET() { return GetToken(ExpressionsParser.OPENING_BRACKET, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public Boolean_expressionContext[] boolean_expression() {
-			return GetRuleContexts<Boolean_expressionContext>();
+		[System.Diagnostics.DebuggerNonUserCode] public BooleanExpressionContext[] booleanExpression() {
+			return GetRuleContexts<BooleanExpressionContext>();
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public Boolean_expressionContext boolean_expression(int i) {
-			return GetRuleContext<Boolean_expressionContext>(i);
+		[System.Diagnostics.DebuggerNonUserCode] public BooleanExpressionContext booleanExpression(int i) {
+			return GetRuleContext<BooleanExpressionContext>(i);
 		}
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode CLOSING_BRACKET() { return GetToken(ExpressionsParser.CLOSING_BRACKET, 0); }
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode NOT() { return GetToken(ExpressionsParser.NOT, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public Arithmetic_expressionContext[] arithmetic_expression() {
-			return GetRuleContexts<Arithmetic_expressionContext>();
+		[System.Diagnostics.DebuggerNonUserCode] public ArithmeticExpressionContext[] arithmeticExpression() {
+			return GetRuleContexts<ArithmeticExpressionContext>();
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public Arithmetic_expressionContext arithmetic_expression(int i) {
-			return GetRuleContext<Arithmetic_expressionContext>(i);
+		[System.Diagnostics.DebuggerNonUserCode] public ArithmeticExpressionContext arithmeticExpression(int i) {
+			return GetRuleContext<ArithmeticExpressionContext>(i);
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public Comparison_operatorContext comparison_operator() {
-			return GetRuleContext<Comparison_operatorContext>(0);
+		[System.Diagnostics.DebuggerNonUserCode] public ComparisonOperatorContext comparisonOperator() {
+			return GetRuleContext<ComparisonOperatorContext>(0);
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public Cell_idContext cell_id() {
-			return GetRuleContext<Cell_idContext>(0);
+		[System.Diagnostics.DebuggerNonUserCode] public CellIdContext cellId() {
+			return GetRuleContext<CellIdContext>(0);
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public Boolean_operatorContext boolean_operator() {
-			return GetRuleContext<Boolean_operatorContext>(0);
+		[System.Diagnostics.DebuggerNonUserCode] public BooleanOperatorContext booleanOperator() {
+			return GetRuleContext<BooleanOperatorContext>(0);
 		}
-		public Boolean_expressionContext(ParserRuleContext parent, int invokingState)
+		public BooleanExpressionContext(ParserRuleContext parent, int invokingState)
 			: base(parent, invokingState)
 		{
 		}
-		public override int RuleIndex { get { return RULE_boolean_expression; } }
+		public override int RuleIndex { get { return RULE_booleanExpression; } }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			IExpressionsVisitor<TResult> typedVisitor = visitor as IExpressionsVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitBoolean_expression(this);
+			if (typedVisitor != null) return typedVisitor.VisitBooleanExpression(this);
 			else return visitor.VisitChildren(this);
 		}
 	}
 
 	[RuleVersion(0)]
-	public Boolean_expressionContext boolean_expression() {
-		return boolean_expression(0);
+	public BooleanExpressionContext booleanExpression() {
+		return booleanExpression(0);
 	}
 
-	private Boolean_expressionContext boolean_expression(int _p) {
+	private BooleanExpressionContext booleanExpression(int _p) {
 		ParserRuleContext _parentctx = Context;
 		int _parentState = State;
-		Boolean_expressionContext _localctx = new Boolean_expressionContext(Context, _parentState);
-		Boolean_expressionContext _prevctx = _localctx;
+		BooleanExpressionContext _localctx = new BooleanExpressionContext(Context, _parentState);
+		BooleanExpressionContext _prevctx = _localctx;
 		int _startState = 0;
-		EnterRecursionRule(_localctx, 0, RULE_boolean_expression, _p);
+		EnterRecursionRule(_localctx, 0, RULE_booleanExpression, _p);
 		int _la;
 		try {
 			int _alt;
@@ -162,7 +162,7 @@ public partial class ExpressionsParser : Parser {
 				State = 18;
 				Match(OPENING_BRACKET);
 				State = 19;
-				boolean_expression(0);
+				booleanExpression(0);
 				State = 20;
 				Match(CLOSING_BRACKET);
 				}
@@ -170,17 +170,17 @@ public partial class ExpressionsParser : Parser {
 			case 2:
 				{
 				State = 22;
-				arithmetic_expression(0);
+				arithmeticExpression(0);
 				State = 23;
-				comparison_operator();
+				comparisonOperator();
 				State = 24;
-				arithmetic_expression(0);
+				arithmeticExpression(0);
 				}
 				break;
 			case 3:
 				{
 				State = 26;
-				cell_id();
+				cellId();
 				}
 				break;
 			}
@@ -195,14 +195,14 @@ public partial class ExpressionsParser : Parser {
 					_prevctx = _localctx;
 					{
 					{
-					_localctx = new Boolean_expressionContext(_parentctx, _parentState);
-					PushNewRecursionContext(_localctx, _startState, RULE_boolean_expression);
+					_localctx = new BooleanExpressionContext(_parentctx, _parentState);
+					PushNewRecursionContext(_localctx, _startState, RULE_booleanExpression);
 					State = 29;
 					if (!(Precpred(Context, 3))) throw new FailedPredicateException(this, "Precpred(Context, 3)");
 					State = 30;
-					boolean_operator();
+					booleanOperator();
 					State = 31;
-					boolean_expression(4);
+					booleanExpression(4);
 					}
 					} 
 				}
@@ -223,30 +223,30 @@ public partial class ExpressionsParser : Parser {
 		return _localctx;
 	}
 
-	public partial class Comparison_operatorContext : ParserRuleContext {
+	public partial class ComparisonOperatorContext : ParserRuleContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode EQUAL() { return GetToken(ExpressionsParser.EQUAL, 0); }
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode LESS() { return GetToken(ExpressionsParser.LESS, 0); }
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode LESS_EQUAL() { return GetToken(ExpressionsParser.LESS_EQUAL, 0); }
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode GREATER() { return GetToken(ExpressionsParser.GREATER, 0); }
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode GREATER_EQUAL() { return GetToken(ExpressionsParser.GREATER_EQUAL, 0); }
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode NOT_EQUAL() { return GetToken(ExpressionsParser.NOT_EQUAL, 0); }
-		public Comparison_operatorContext(ParserRuleContext parent, int invokingState)
+		public ComparisonOperatorContext(ParserRuleContext parent, int invokingState)
 			: base(parent, invokingState)
 		{
 		}
-		public override int RuleIndex { get { return RULE_comparison_operator; } }
+		public override int RuleIndex { get { return RULE_comparisonOperator; } }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			IExpressionsVisitor<TResult> typedVisitor = visitor as IExpressionsVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitComparison_operator(this);
+			if (typedVisitor != null) return typedVisitor.VisitComparisonOperator(this);
 			else return visitor.VisitChildren(this);
 		}
 	}
 
 	[RuleVersion(0)]
-	public Comparison_operatorContext comparison_operator() {
-		Comparison_operatorContext _localctx = new Comparison_operatorContext(Context, State);
-		EnterRule(_localctx, 2, RULE_comparison_operator);
+	public ComparisonOperatorContext comparisonOperator() {
+		ComparisonOperatorContext _localctx = new ComparisonOperatorContext(Context, State);
+		EnterRule(_localctx, 2, RULE_comparisonOperator);
 		int _la;
 		try {
 			EnterOuterAlt(_localctx, 1);
@@ -273,26 +273,26 @@ public partial class ExpressionsParser : Parser {
 		return _localctx;
 	}
 
-	public partial class Boolean_operatorContext : ParserRuleContext {
+	public partial class BooleanOperatorContext : ParserRuleContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode OR() { return GetToken(ExpressionsParser.OR, 0); }
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode AND() { return GetToken(ExpressionsParser.AND, 0); }
-		public Boolean_operatorContext(ParserRuleContext parent, int invokingState)
+		public BooleanOperatorContext(ParserRuleContext parent, int invokingState)
 			: base(parent, invokingState)
 		{
 		}
-		public override int RuleIndex { get { return RULE_boolean_operator; } }
+		public override int RuleIndex { get { return RULE_booleanOperator; } }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			IExpressionsVisitor<TResult> typedVisitor = visitor as IExpressionsVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitBoolean_operator(this);
+			if (typedVisitor != null) return typedVisitor.VisitBooleanOperator(this);
 			else return visitor.VisitChildren(this);
 		}
 	}
 
 	[RuleVersion(0)]
-	public Boolean_operatorContext boolean_operator() {
-		Boolean_operatorContext _localctx = new Boolean_operatorContext(Context, State);
-		EnterRule(_localctx, 4, RULE_boolean_operator);
+	public BooleanOperatorContext booleanOperator() {
+		BooleanOperatorContext _localctx = new BooleanOperatorContext(Context, State);
+		EnterRule(_localctx, 4, RULE_booleanOperator);
 		int _la;
 		try {
 			EnterOuterAlt(_localctx, 1);
@@ -319,13 +319,13 @@ public partial class ExpressionsParser : Parser {
 		return _localctx;
 	}
 
-	public partial class Arithmetic_expressionContext : ParserRuleContext {
+	public partial class ArithmeticExpressionContext : ParserRuleContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode OPENING_BRACKET() { return GetToken(ExpressionsParser.OPENING_BRACKET, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public Arithmetic_expressionContext[] arithmetic_expression() {
-			return GetRuleContexts<Arithmetic_expressionContext>();
+		[System.Diagnostics.DebuggerNonUserCode] public ArithmeticExpressionContext[] arithmeticExpression() {
+			return GetRuleContexts<ArithmeticExpressionContext>();
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public Arithmetic_expressionContext arithmetic_expression(int i) {
-			return GetRuleContext<Arithmetic_expressionContext>(i);
+		[System.Diagnostics.DebuggerNonUserCode] public ArithmeticExpressionContext arithmeticExpression(int i) {
+			return GetRuleContext<ArithmeticExpressionContext>(i);
 		}
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode CLOSING_BRACKET() { return GetToken(ExpressionsParser.CLOSING_BRACKET, 0); }
 		[System.Diagnostics.DebuggerNonUserCode] public FunctionContext function() {
@@ -333,34 +333,34 @@ public partial class ExpressionsParser : Parser {
 		}
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode COMMA() { return GetToken(ExpressionsParser.COMMA, 0); }
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode SIGNED_NUMBER() { return GetToken(ExpressionsParser.SIGNED_NUMBER, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public Arithmetic_operatorContext arithmetic_operator() {
-			return GetRuleContext<Arithmetic_operatorContext>(0);
+		[System.Diagnostics.DebuggerNonUserCode] public ArithmeticOperatorContext arithmeticOperator() {
+			return GetRuleContext<ArithmeticOperatorContext>(0);
 		}
-		public Arithmetic_expressionContext(ParserRuleContext parent, int invokingState)
+		public ArithmeticExpressionContext(ParserRuleContext parent, int invokingState)
 			: base(parent, invokingState)
 		{
 		}
-		public override int RuleIndex { get { return RULE_arithmetic_expression; } }
+		public override int RuleIndex { get { return RULE_arithmeticExpression; } }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			IExpressionsVisitor<TResult> typedVisitor = visitor as IExpressionsVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitArithmetic_expression(this);
+			if (typedVisitor != null) return typedVisitor.VisitArithmeticExpression(this);
 			else return visitor.VisitChildren(this);
 		}
 	}
 
 	[RuleVersion(0)]
-	public Arithmetic_expressionContext arithmetic_expression() {
-		return arithmetic_expression(0);
+	public ArithmeticExpressionContext arithmeticExpression() {
+		return arithmeticExpression(0);
 	}
 
-	private Arithmetic_expressionContext arithmetic_expression(int _p) {
+	private ArithmeticExpressionContext arithmeticExpression(int _p) {
 		ParserRuleContext _parentctx = Context;
 		int _parentState = State;
-		Arithmetic_expressionContext _localctx = new Arithmetic_expressionContext(Context, _parentState);
-		Arithmetic_expressionContext _prevctx = _localctx;
+		ArithmeticExpressionContext _localctx = new ArithmeticExpressionContext(Context, _parentState);
+		ArithmeticExpressionContext _prevctx = _localctx;
 		int _startState = 6;
-		EnterRecursionRule(_localctx, 6, RULE_arithmetic_expression, _p);
+		EnterRecursionRule(_localctx, 6, RULE_arithmeticExpression, _p);
 		try {
 			int _alt;
 			EnterOuterAlt(_localctx, 1);
@@ -373,7 +373,7 @@ public partial class ExpressionsParser : Parser {
 				State = 43;
 				Match(OPENING_BRACKET);
 				State = 44;
-				arithmetic_expression(0);
+				arithmeticExpression(0);
 				State = 45;
 				Match(CLOSING_BRACKET);
 				}
@@ -386,11 +386,11 @@ public partial class ExpressionsParser : Parser {
 				State = 48;
 				Match(OPENING_BRACKET);
 				State = 49;
-				arithmetic_expression(0);
+				arithmeticExpression(0);
 				State = 50;
 				Match(COMMA);
 				State = 51;
-				arithmetic_expression(0);
+				arithmeticExpression(0);
 				State = 52;
 				Match(CLOSING_BRACKET);
 				}
@@ -415,14 +415,14 @@ public partial class ExpressionsParser : Parser {
 					_prevctx = _localctx;
 					{
 					{
-					_localctx = new Arithmetic_expressionContext(_parentctx, _parentState);
-					PushNewRecursionContext(_localctx, _startState, RULE_arithmetic_expression);
+					_localctx = new ArithmeticExpressionContext(_parentctx, _parentState);
+					PushNewRecursionContext(_localctx, _startState, RULE_arithmeticExpression);
 					State = 57;
 					if (!(Precpred(Context, 3))) throw new FailedPredicateException(this, "Precpred(Context, 3)");
 					State = 58;
-					arithmetic_operator();
+					arithmeticOperator();
 					State = 59;
-					arithmetic_expression(4);
+					arithmeticExpression(4);
 					}
 					} 
 				}
@@ -443,30 +443,30 @@ public partial class ExpressionsParser : Parser {
 		return _localctx;
 	}
 
-	public partial class Arithmetic_operatorContext : ParserRuleContext {
+	public partial class ArithmeticOperatorContext : ParserRuleContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode PLUS() { return GetToken(ExpressionsParser.PLUS, 0); }
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode MINUS() { return GetToken(ExpressionsParser.MINUS, 0); }
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode MULTIPLY() { return GetToken(ExpressionsParser.MULTIPLY, 0); }
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode DIVIDE() { return GetToken(ExpressionsParser.DIVIDE, 0); }
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode MOD() { return GetToken(ExpressionsParser.MOD, 0); }
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode DIV() { return GetToken(ExpressionsParser.DIV, 0); }
-		public Arithmetic_operatorContext(ParserRuleContext parent, int invokingState)
+		public ArithmeticOperatorContext(ParserRuleContext parent, int invokingState)
 			: base(parent, invokingState)
 		{
 		}
-		public override int RuleIndex { get { return RULE_arithmetic_operator; } }
+		public override int RuleIndex { get { return RULE_arithmeticOperator; } }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			IExpressionsVisitor<TResult> typedVisitor = visitor as IExpressionsVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitArithmetic_operator(this);
+			if (typedVisitor != null) return typedVisitor.VisitArithmeticOperator(this);
 			else return visitor.VisitChildren(this);
 		}
 	}
 
 	[RuleVersion(0)]
-	public Arithmetic_operatorContext arithmetic_operator() {
-		Arithmetic_operatorContext _localctx = new Arithmetic_operatorContext(Context, State);
-		EnterRule(_localctx, 8, RULE_arithmetic_operator);
+	public ArithmeticOperatorContext arithmeticOperator() {
+		ArithmeticOperatorContext _localctx = new ArithmeticOperatorContext(Context, State);
+		EnterRule(_localctx, 8, RULE_arithmeticOperator);
 		int _la;
 		try {
 			EnterOuterAlt(_localctx, 1);
@@ -539,29 +539,29 @@ public partial class ExpressionsParser : Parser {
 		return _localctx;
 	}
 
-	public partial class Cell_idContext : ParserRuleContext {
+	public partial class CellIdContext : ParserRuleContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode UNSIGNED_NUMBER() { return GetToken(ExpressionsParser.UNSIGNED_NUMBER, 0); }
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode[] UPPERCASE_LETTER() { return GetTokens(ExpressionsParser.UPPERCASE_LETTER); }
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode UPPERCASE_LETTER(int i) {
 			return GetToken(ExpressionsParser.UPPERCASE_LETTER, i);
 		}
-		public Cell_idContext(ParserRuleContext parent, int invokingState)
+		public CellIdContext(ParserRuleContext parent, int invokingState)
 			: base(parent, invokingState)
 		{
 		}
-		public override int RuleIndex { get { return RULE_cell_id; } }
+		public override int RuleIndex { get { return RULE_cellId; } }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			IExpressionsVisitor<TResult> typedVisitor = visitor as IExpressionsVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitCell_id(this);
+			if (typedVisitor != null) return typedVisitor.VisitCellId(this);
 			else return visitor.VisitChildren(this);
 		}
 	}
 
 	[RuleVersion(0)]
-	public Cell_idContext cell_id() {
-		Cell_idContext _localctx = new Cell_idContext(Context, State);
-		EnterRule(_localctx, 12, RULE_cell_id);
+	public CellIdContext cellId() {
+		CellIdContext _localctx = new CellIdContext(Context, State);
+		EnterRule(_localctx, 12, RULE_cellId);
 		int _la;
 		try {
 			EnterOuterAlt(_localctx, 1);
@@ -597,18 +597,18 @@ public partial class ExpressionsParser : Parser {
 
 	public override bool Sempred(RuleContext _localctx, int ruleIndex, int predIndex) {
 		switch (ruleIndex) {
-		case 0: return boolean_expression_sempred((Boolean_expressionContext)_localctx, predIndex);
-		case 3: return arithmetic_expression_sempred((Arithmetic_expressionContext)_localctx, predIndex);
+		case 0: return booleanExpression_sempred((BooleanExpressionContext)_localctx, predIndex);
+		case 3: return arithmeticExpression_sempred((ArithmeticExpressionContext)_localctx, predIndex);
 		}
 		return true;
 	}
-	private bool boolean_expression_sempred(Boolean_expressionContext _localctx, int predIndex) {
+	private bool booleanExpression_sempred(BooleanExpressionContext _localctx, int predIndex) {
 		switch (predIndex) {
 		case 0: return Precpred(Context, 3);
 		}
 		return true;
 	}
-	private bool arithmetic_expression_sempred(Arithmetic_expressionContext _localctx, int predIndex) {
+	private bool arithmeticExpression_sempred(ArithmeticExpressionContext _localctx, int predIndex) {
 		switch (predIndex) {
 		case 1: return Precpred(Context, 3);
 		}
