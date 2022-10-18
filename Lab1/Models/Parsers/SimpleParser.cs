@@ -11,7 +11,7 @@ namespace Lab1.Parsers
     {
         public IExpression ParseExpression(string expression)
         {
-            return new SimpleExpression(expression);
+            return new TextExpression(expression);
         }
     }
 }

@@ -47,7 +47,7 @@ namespace Lab1
             InsureTableOpened();
 
             ICell cell = _table.GetCell(cellID);
-            cell.Expression = expression != null ? _parser.ParseExpression(expression) : new SimpleExpression(String.Empty);
+            cell.Expression = expression != null ? _parser.ParseExpression(expression) : new TextExpression(String.Empty);
         }
 
         public string GetCellValue(string cell)

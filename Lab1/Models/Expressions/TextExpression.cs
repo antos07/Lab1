@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace Lab1.Models.Expressions
 {
-    internal class SimpleExpression : IExpression
+    internal class TextExpression : IExpression
     {
         private readonly string _value;
 
-        public SimpleExpression(string value)
+        public TextExpression(string value)
         {
             _value = value;
         }
