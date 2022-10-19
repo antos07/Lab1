@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// Generated from c:\Users\antos07\Documents\University\OOP Labs\Lab1\Lab1\Models\Parsers\antlr4\Expressions.g4 by ANTLR 4.9.2
+// Generated from c:\Users\antos07\Documents\University\OOP Labs\Lab1\Lab1\ANTLR4\Expressions.g4 by ANTLR 4.9.2
 
 // Unreachable code detected
 #pragma warning disable 0162
