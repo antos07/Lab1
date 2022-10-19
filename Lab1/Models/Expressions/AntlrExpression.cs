@@ -22,5 +22,10 @@ namespace Lab1.Models.Expressions
             var calculator = new Calculator(forTable);
             return calculator.Visit(_tree);
         }
+
+        public string ToString()
+        {
+            return _tree.GetText();
+        }
     }
 }
