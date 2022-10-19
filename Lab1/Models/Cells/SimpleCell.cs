@@ -16,7 +16,7 @@ namespace Lab1.Models.Cells
 
         public IExpression? Expression { get => _expression; set => _expression = value; }
 
-        public string Value => _expression != null ? _expression.Calculate(_table) : String.Empty;
+        public bool? Value => _expression != null ? _expression.Calculate(_table) : null;
 
         public SimpleCell(ITable table)
         {

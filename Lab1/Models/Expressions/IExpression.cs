@@ -11,6 +11,6 @@ namespace Lab1.Models.Expressions
     {
         string ToString();
 
-        string Calculate(ITable forTable);
+        bool Calculate(ITable forTable);
     }
 }

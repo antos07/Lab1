@@ -53,7 +53,7 @@ namespace Lab1
         public string GetCellValue(string cell)
         {
             InsureTableOpened();
-            return _table.GetCell(cell).Value;
+            return _table.GetCell(cell).Value.ToString();
         }
 
         public string GetCellExpression(string cell)
