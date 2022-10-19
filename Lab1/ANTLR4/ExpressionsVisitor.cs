@@ -32,45 +32,94 @@ using IToken = Antlr4.Runtime.IToken;
 [System.CLSCompliant(false)]
 public interface IExpressionsVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="ExpressionsParser.booleanExpression"/>.
+	/// Visit a parse tree produced by the <c>cellIdBoolExp</c>
+	/// labeled alternative in <see cref="ExpressionsParser.booleanExpression"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitBooleanExpression([NotNull] ExpressionsParser.BooleanExpressionContext context);
+	Result VisitCellIdBoolExp([NotNull] ExpressionsParser.CellIdBoolExpContext context);
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="ExpressionsParser.comparisonOperator"/>.
+	/// Visit a parse tree produced by the <c>orBoolExp</c>
+	/// labeled alternative in <see cref="ExpressionsParser.booleanExpression"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitComparisonOperator([NotNull] ExpressionsParser.ComparisonOperatorContext context);
+	Result VisitOrBoolExp([NotNull] ExpressionsParser.OrBoolExpContext context);
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="ExpressionsParser.booleanOperator"/>.
+	/// Visit a parse tree produced by the <c>compBoolExp</c>
+	/// labeled alternative in <see cref="ExpressionsParser.booleanExpression"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitBooleanOperator([NotNull] ExpressionsParser.BooleanOperatorContext context);
+	Result VisitCompBoolExp([NotNull] ExpressionsParser.CompBoolExpContext context);
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="ExpressionsParser.arithmeticExpression"/>.
+	/// Visit a parse tree produced by the <c>andBoolExp</c>
+	/// labeled alternative in <see cref="ExpressionsParser.booleanExpression"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitArithmeticExpression([NotNull] ExpressionsParser.ArithmeticExpressionContext context);
+	Result VisitAndBoolExp([NotNull] ExpressionsParser.AndBoolExpContext context);
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="ExpressionsParser.arithmeticOperator"/>.
+	/// Visit a parse tree produced by the <c>parenthesisBoolExp</c>
+	/// labeled alternative in <see cref="ExpressionsParser.booleanExpression"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitArithmeticOperator([NotNull] ExpressionsParser.ArithmeticOperatorContext context);
+	Result VisitParenthesisBoolExp([NotNull] ExpressionsParser.ParenthesisBoolExpContext context);
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="ExpressionsParser.function"/>.
+	/// Visit a parse tree produced by the <c>notBoolExpr</c>
+	/// labeled alternative in <see cref="ExpressionsParser.booleanExpression"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitFunction([NotNull] ExpressionsParser.FunctionContext context);
+	Result VisitNotBoolExpr([NotNull] ExpressionsParser.NotBoolExprContext context);
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="ExpressionsParser.cellId"/>.
+	/// Visit a parse tree produced by the <c>multDivArExp</c>
+	/// labeled alternative in <see cref="ExpressionsParser.arithmeticExpression"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitCellId([NotNull] ExpressionsParser.CellIdContext context);
+	Result VisitMultDivArExp([NotNull] ExpressionsParser.MultDivArExpContext context);
+	/// <summary>
+	/// Visit a parse tree produced by the <c>plusMinusArExp</c>
+	/// labeled alternative in <see cref="ExpressionsParser.arithmeticExpression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitPlusMinusArExp([NotNull] ExpressionsParser.PlusMinusArExpContext context);
+	/// <summary>
+	/// Visit a parse tree produced by the <c>functionArExp</c>
+	/// labeled alternative in <see cref="ExpressionsParser.arithmeticExpression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitFunctionArExp([NotNull] ExpressionsParser.FunctionArExpContext context);
+	/// <summary>
+	/// Visit a parse tree produced by the <c>unsignedNumericArExp</c>
+	/// labeled alternative in <see cref="ExpressionsParser.arithmeticExpression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitUnsignedNumericArExp([NotNull] ExpressionsParser.UnsignedNumericArExpContext context);
+	/// <summary>
+	/// Visit a parse tree produced by the <c>parenthesisArExp</c>
+	/// labeled alternative in <see cref="ExpressionsParser.arithmeticExpression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitParenthesisArExp([NotNull] ExpressionsParser.ParenthesisArExpContext context);
+	/// <summary>
+	/// Visit a parse tree produced by the <c>signedNumericExp</c>
+	/// labeled alternative in <see cref="ExpressionsParser.arithmeticExpression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitSignedNumericExp([NotNull] ExpressionsParser.SignedNumericExpContext context);
+	/// <summary>
+	/// Visit a parse tree produced by the <c>modArExp</c>
+	/// labeled alternative in <see cref="ExpressionsParser.arithmeticExpression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitModArExp([NotNull] ExpressionsParser.ModArExpContext context);
 }

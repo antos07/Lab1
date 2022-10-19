@@ -35,7 +35,8 @@ using ParserRuleContext = Antlr4.Runtime.ParserRuleContext;
 [System.CLSCompliant(false)]
 public partial class ExpressionsBaseVisitor<Result> : AbstractParseTreeVisitor<Result>, IExpressionsVisitor<Result> {
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="ExpressionsParser.booleanExpression"/>.
+	/// Visit a parse tree produced by the <c>cellIdBoolExp</c>
+	/// labeled alternative in <see cref="ExpressionsParser.booleanExpression"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -43,9 +44,10 @@ public partial class ExpressionsBaseVisitor<Result> : AbstractParseTreeVisitor<R
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitBooleanExpression([NotNull] ExpressionsParser.BooleanExpressionContext context) { return VisitChildren(context); }
+	public virtual Result VisitCellIdBoolExp([NotNull] ExpressionsParser.CellIdBoolExpContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="ExpressionsParser.comparisonOperator"/>.
+	/// Visit a parse tree produced by the <c>orBoolExp</c>
+	/// labeled alternative in <see cref="ExpressionsParser.booleanExpression"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -53,9 +55,10 @@ public partial class ExpressionsBaseVisitor<Result> : AbstractParseTreeVisitor<R
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitComparisonOperator([NotNull] ExpressionsParser.ComparisonOperatorContext context) { return VisitChildren(context); }
+	public virtual Result VisitOrBoolExp([NotNull] ExpressionsParser.OrBoolExpContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="ExpressionsParser.booleanOperator"/>.
+	/// Visit a parse tree produced by the <c>compBoolExp</c>
+	/// labeled alternative in <see cref="ExpressionsParser.booleanExpression"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -63,9 +66,10 @@ public partial class ExpressionsBaseVisitor<Result> : AbstractParseTreeVisitor<R
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitBooleanOperator([NotNull] ExpressionsParser.BooleanOperatorContext context) { return VisitChildren(context); }
+	public virtual Result VisitCompBoolExp([NotNull] ExpressionsParser.CompBoolExpContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="ExpressionsParser.arithmeticExpression"/>.
+	/// Visit a parse tree produced by the <c>andBoolExp</c>
+	/// labeled alternative in <see cref="ExpressionsParser.booleanExpression"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -73,9 +77,10 @@ public partial class ExpressionsBaseVisitor<Result> : AbstractParseTreeVisitor<R
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitArithmeticExpression([NotNull] ExpressionsParser.ArithmeticExpressionContext context) { return VisitChildren(context); }
+	public virtual Result VisitAndBoolExp([NotNull] ExpressionsParser.AndBoolExpContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="ExpressionsParser.arithmeticOperator"/>.
+	/// Visit a parse tree produced by the <c>parenthesisBoolExp</c>
+	/// labeled alternative in <see cref="ExpressionsParser.booleanExpression"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -83,9 +88,10 @@ public partial class ExpressionsBaseVisitor<Result> : AbstractParseTreeVisitor<R
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitArithmeticOperator([NotNull] ExpressionsParser.ArithmeticOperatorContext context) { return VisitChildren(context); }
+	public virtual Result VisitParenthesisBoolExp([NotNull] ExpressionsParser.ParenthesisBoolExpContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="ExpressionsParser.function"/>.
+	/// Visit a parse tree produced by the <c>notBoolExpr</c>
+	/// labeled alternative in <see cref="ExpressionsParser.booleanExpression"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -93,9 +99,10 @@ public partial class ExpressionsBaseVisitor<Result> : AbstractParseTreeVisitor<R
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitFunction([NotNull] ExpressionsParser.FunctionContext context) { return VisitChildren(context); }
+	public virtual Result VisitNotBoolExpr([NotNull] ExpressionsParser.NotBoolExprContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="ExpressionsParser.cellId"/>.
+	/// Visit a parse tree produced by the <c>multDivArExp</c>
+	/// labeled alternative in <see cref="ExpressionsParser.arithmeticExpression"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -103,5 +110,71 @@ public partial class ExpressionsBaseVisitor<Result> : AbstractParseTreeVisitor<R
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitCellId([NotNull] ExpressionsParser.CellIdContext context) { return VisitChildren(context); }
+	public virtual Result VisitMultDivArExp([NotNull] ExpressionsParser.MultDivArExpContext context) { return VisitChildren(context); }
+	/// <summary>
+	/// Visit a parse tree produced by the <c>plusMinusArExp</c>
+	/// labeled alternative in <see cref="ExpressionsParser.arithmeticExpression"/>.
+	/// <para>
+	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
+	/// on <paramref name="context"/>.
+	/// </para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	public virtual Result VisitPlusMinusArExp([NotNull] ExpressionsParser.PlusMinusArExpContext context) { return VisitChildren(context); }
+	/// <summary>
+	/// Visit a parse tree produced by the <c>functionArExp</c>
+	/// labeled alternative in <see cref="ExpressionsParser.arithmeticExpression"/>.
+	/// <para>
+	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
+	/// on <paramref name="context"/>.
+	/// </para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	public virtual Result VisitFunctionArExp([NotNull] ExpressionsParser.FunctionArExpContext context) { return VisitChildren(context); }
+	/// <summary>
+	/// Visit a parse tree produced by the <c>unsignedNumericArExp</c>
+	/// labeled alternative in <see cref="ExpressionsParser.arithmeticExpression"/>.
+	/// <para>
+	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
+	/// on <paramref name="context"/>.
+	/// </para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	public virtual Result VisitUnsignedNumericArExp([NotNull] ExpressionsParser.UnsignedNumericArExpContext context) { return VisitChildren(context); }
+	/// <summary>
+	/// Visit a parse tree produced by the <c>parenthesisArExp</c>
+	/// labeled alternative in <see cref="ExpressionsParser.arithmeticExpression"/>.
+	/// <para>
+	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
+	/// on <paramref name="context"/>.
+	/// </para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	public virtual Result VisitParenthesisArExp([NotNull] ExpressionsParser.ParenthesisArExpContext context) { return VisitChildren(context); }
+	/// <summary>
+	/// Visit a parse tree produced by the <c>signedNumericExp</c>
+	/// labeled alternative in <see cref="ExpressionsParser.arithmeticExpression"/>.
+	/// <para>
+	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
+	/// on <paramref name="context"/>.
+	/// </para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	public virtual Result VisitSignedNumericExp([NotNull] ExpressionsParser.SignedNumericExpContext context) { return VisitChildren(context); }
+	/// <summary>
+	/// Visit a parse tree produced by the <c>modArExp</c>
+	/// labeled alternative in <see cref="ExpressionsParser.arithmeticExpression"/>.
+	/// <para>
+	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
+	/// on <paramref name="context"/>.
+	/// </para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	public virtual Result VisitModArExp([NotNull] ExpressionsParser.ModArExpContext context) { return VisitChildren(context); }
 }
