@@ -6,11 +6,11 @@ using Antlr4.Runtime.Tree;
 
 namespace Lab1.Models.Parsers.antlr4
 {
-    public class CalculatingVisitor : ExpressionsBaseVisitor<dynamic>
+    public class Calculator : ExpressionsBaseVisitor<dynamic>
     {
         ITable _table;
 
-        public CalculatingVisitor(ITable table)
+        public Calculator(ITable table)
         {
             _table = table;
         }
