@@ -81,7 +81,7 @@
             this.showProgramInfoButton.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.showProgramInfoButton.Size = new System.Drawing.Size(408, 112);
             this.showProgramInfoButton.TabIndex = 3;
-            this.showProgramInfoButton.Text = "О програмі";
+            this.showProgramInfoButton.Text = "Про програму";
             this.showProgramInfoButton.UseVisualStyleBackColor = true;
             this.showProgramInfoButton.Click += new System.EventHandler(this.showProgramInfoButton_Click);
             // 

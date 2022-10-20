@@ -55,7 +55,7 @@
             this.helpToolStripMenuItem});
             this.TableViewerMenuStrip.Location = new System.Drawing.Point(0, 0);
             this.TableViewerMenuStrip.Name = "TableViewerMenuStrip";
-            this.TableViewerMenuStrip.Size = new System.Drawing.Size(1943, 49);
+            this.TableViewerMenuStrip.Size = new System.Drawing.Size(1943, 52);
             this.TableViewerMenuStrip.TabIndex = 0;
             this.TableViewerMenuStrip.Text = "menuStrip1";
             // 
@@ -129,14 +129,14 @@
             // openHelpToolStripMenuItem
             // 
             this.openHelpToolStripMenuItem.Name = "openHelpToolStripMenuItem";
-            this.openHelpToolStripMenuItem.Size = new System.Drawing.Size(340, 54);
+            this.openHelpToolStripMenuItem.Size = new System.Drawing.Size(448, 54);
             this.openHelpToolStripMenuItem.Text = "Допомога";
             // 
             // aboutProgramToolStripMenuItem
             // 
             this.aboutProgramToolStripMenuItem.Name = "aboutProgramToolStripMenuItem";
-            this.aboutProgramToolStripMenuItem.Size = new System.Drawing.Size(340, 54);
-            this.aboutProgramToolStripMenuItem.Text = "О програмі";
+            this.aboutProgramToolStripMenuItem.Size = new System.Drawing.Size(448, 54);
+            this.aboutProgramToolStripMenuItem.Text = "Про програму";
             // 
             // tableDataGridView
             // 
@@ -145,14 +145,14 @@
             this.tableDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.tableDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableDataGridView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
-            this.tableDataGridView.Location = new System.Drawing.Point(0, 49);
+            this.tableDataGridView.Location = new System.Drawing.Point(0, 52);
             this.tableDataGridView.MultiSelect = false;
             this.tableDataGridView.Name = "tableDataGridView";
             this.tableDataGridView.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             this.tableDataGridView.RowTemplate.Height = 49;
             this.tableDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.tableDataGridView.ShowEditingIcon = false;
-            this.tableDataGridView.Size = new System.Drawing.Size(1943, 1052);
+            this.tableDataGridView.Size = new System.Drawing.Size(1943, 1049);
             this.tableDataGridView.TabIndex = 1;
             // 
             // TableViewerForm
