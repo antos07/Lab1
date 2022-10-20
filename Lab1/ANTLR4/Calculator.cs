@@ -3,6 +3,7 @@ using Lab1.ANTLR4;
 using Lab1.Models.Tables;
 using ExtendedNumerics;
 using Antlr4.Runtime.Tree;
+using Lab1.Models.Expressions.Exceptions;
 
 namespace Lab1.Models.Parsers.antlr4
 {
@@ -34,7 +35,14 @@ namespace Lab1.Models.Parsers.antlr4
         {
             string cellID = context.CELL_ID().GetText();
 
-            return _table.GetCell(cellID).Value;
+            try
+            {
+                return _table.GetCell(cellID).Value;
+            }
+            catch (InvalidExpressionException)
+            {
+                throw new InvalidExpressionInReferencedCellException(cellID);
+            }
         }
 
         public override dynamic VisitCompBoolExp([NotNull] ExpressionsParser.CompBoolExpContext context)
