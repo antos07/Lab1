@@ -12,18 +12,29 @@ namespace Lab1.Models.Expressions
     public class AntlrExpression : IExpression
     {
         private ExpressionsParser.ExpressionInCellContext _tree;
-        private ParserError? _error;
 
-        public AntlrExpression(ExpressionsParser.ExpressionInCellContext tree, ParserError? error)
+        public AntlrExpression(ExpressionsParser.ExpressionInCellContext tree)
         {
             _tree = tree;
-            _error = error;
         }
 
         public bool Calculate(ITable forTable)
         {
             var calculator = new Calculator(forTable);
-            return calculator.Visit(_tree);
+            try
+            {
+                return calculator.Visit(_tree);
+            }
+            catch (ZeroDevisionInVisitorException e)
+            {
+                throw new Exceptions.ZeroDevisionInExpressionException($"Zero division in '{ToString()}'",
+                    this, e.StartPos, e.EndPos);
+            }
+            catch (RationalModException e)
+            {
+                throw new Exceptions.ModForNonintegersException($"Using mod with nonintegers '{ToString()}'",
+                    this, e.StartPos, e.EndPos);
+            }
         }
 
         public string ToString()
