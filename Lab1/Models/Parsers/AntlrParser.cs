@@ -30,13 +30,7 @@ namespace Lab1.Models.Parsers
 
             ExpressionsParser.ExpressionInCellContext tree = parser.expressionInCell();
 
-            if (errorListener.Errors.Count > 0)
-            {
-                foreach (ParserError error in errorListener.Errors)
-                {
-                    MessageBox.Show($"{error.Message} -- {error.Token} -- {error.Line} -- {error.CharPositionInLine} -- {error.SuppressedException}");
-                }
-            }
+            ParserError? mainError = errorListener.Errors.Count > 0 ? errorListener.Errors[0] : null;
 
             return new AntlrExpression(tree);
         }
