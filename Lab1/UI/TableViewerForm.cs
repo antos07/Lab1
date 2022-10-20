@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -26,41 +25,167 @@ namespace Lab1
             _controller = controller;
         }
 
-
-        #region Additional handlers setup
-        private void SetupHandlers() 
+        #region Additional handlers
+        private void SetupHandlers()
         {
+            tableDataGridView.CellBeginEdit += tableDataGridView_CellBeginEdit;
             tableDataGridView.CellEndEdit += tableDataGridView_CellEndEdit;
         }
 
-        private void tableDataGridView_CellEndEdit(object sender, DataGridViewCellEventArgs e) 
+        private void tableDataGridView_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
         {
-            DataGridViewCell cell = tableDataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex];
-            if (cell.Value != null)
+            if (!onlyExpressionsModeToolStripMenuItem.Checked)
             {
-                string expression = GetExpression(cell);
-                if (expression.Length == 0)
-                    return;
-                cell.ErrorText = UpdateExpressionInCellAndGetErrorText(GetCellID(cell), expression);
+                DataGridViewCell cell = tableDataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex];
+                DisplayCellExpression(cell);
             }
         }
+
+        private void tableDataGridView_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            DataGridViewCell cell = tableDataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex];
+            if (cell.Value == null)
+                cell.Value = string.Empty;
+            string newExpression = cell.Value.ToString();
+            cell.ErrorText = UpdateExpressionInCellAndGetErrorText(GetCellID(cell), newExpression);
+
+            if (!onlyExpressionsModeToolStripMenuItem.Checked)
+            {
+                DisplayCellExpressionValue(cell);
+            }
+        }
+
+        private void onlyExpressionsModeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (onlyExpressionsModeToolStripMenuItem.Checked)
+            {
+                updateAllCellsToolStripMenuItem.Enabled = false;
+                DisplayAllExpressions();
+            }
+            else
+            {
+                updateAllCellsToolStripMenuItem.Enabled = true;
+                DisplayAllExpressionValues();
+            }
+        }
+
+        private void updateAllCellsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DisplayAllExpressionValues();
+        }
+
+        #endregion
+
+        #region tableDataGridView setup
+
+        private void TableViewerForm_Load(object sender, EventArgs e)
+        {
+            SetupTableDataGridView();
+        }
+
+        private void SetupTableDataGridView()
+        {
+            SetupTableColumns();
+            SetupTableRows();
+        }
+
+        /// <summary> 
+        /// Method <c>SetupTableColumns</c> setups columns layout of <c>tableDatagridView</c>.
+        /// </summary>
+        private void SetupTableColumns()
+        {
+            for (int i = 0; i < _controller.GetColumnsNumber(); i++)
+            {
+                string headerName = ColumnNameFromIndex(i);
+                string columnName = $"column{headerName}";
+                tableDataGridView.Columns.Add(columnName, headerName);
+                tableDataGridView.Columns[i].SortMode = DataGridViewColumnSortMode.NotSortable;
+            }
+        }
+
+        private void SetupTableRows()
+        {
+            tableDataGridView.Rows.Add(_controller.GetRowsNumber());
+
+            foreach (DataGridViewRow row in tableDataGridView.Rows)
+            {
+                row.HeaderCell.Value = (row.Index + 1).ToString();
+            }
+        }
+
+        #endregion
+
+        #region Utils
 
         private static string GetCellID(DataGridViewCell cell)
         {
             return cell.OwningColumn.HeaderCell.Value.ToString() + cell.OwningRow.HeaderCell.Value.ToString();
         }
 
-        private static string GetExpression(DataGridViewCell cell)
+        void DisplayCellExpression(DataGridViewCell cell)
         {
-            return cell.Value.ToString().Trim();
+            string cellId = GetCellID(cell);
+            cell.Value = _controller.GetCellExpression(cellId);
+            try
+            {
+                _controller.GetCellValue(cellId);
+                cell.ErrorText = String.Empty;
+            }
+            catch (InvalidExpressionException)
+            { }
+            catch (Exception e)
+            {
+                cell.ErrorText = ErrorTextForException(e);
+            }
         }
 
-        private string UpdateExpressionInCellAndGetErrorText(string cellID, string expression)
+        private void DisplayCellExpressionValue(DataGridViewCell cell)
+        {
+            string cellId = GetCellID(cell);
+            try
+            {
+                bool cellValue = _controller.GetCellValue(cellId);
+                cell.Value = _controller.GetCellExpression(cellId) != String.Empty ? cellValue.ToString() : String.Empty;
+                cell.ErrorText = String.Empty;
+            }
+            catch (InvalidExpressionException)
+            {
+                cell.Value = "ERROR";
+            }
+            catch (Exception e)
+            {
+                cell.Value = "ERROR";
+                cell.ErrorText = ErrorTextForException(e);
+            }
+        }
+
+        private void DisplayAllExpressions()
+        {
+            foreach (DataGridViewRow row in tableDataGridView.Rows)
+            {
+                foreach (DataGridViewTextBoxCell cell in row.Cells)
+                {
+                    DisplayCellExpression(cell);
+                }
+            }
+        }
+
+        private void DisplayAllExpressionValues()
+        {
+            foreach (DataGridViewRow row in tableDataGridView.Rows)
+            {
+                foreach (DataGridViewTextBoxCell cell in row.Cells)
+                {
+                    DisplayCellExpressionValue(cell);
+                }
+            }
+        }
+
+        private string ErrorTextForException(Exception exception)
         {
             try
             {
-                _controller.UpdateExpressionInCell(cellID, expression);
-                return String.Empty;
+                throw exception;
             }
             catch (ParserException)
             {
@@ -92,32 +217,17 @@ namespace Lab1
         {
             return e.Expression.ToString().Substring(e.StartPos, e.EndPos - e.StartPos);
         }
-        #endregion
 
-        #region tableDataGridView setup
-
-        private void TableViewerForm_Load(object sender, EventArgs e)
+        private string UpdateExpressionInCellAndGetErrorText(string cellID, string expression)
         {
-            SetupTableDataGridView();
-        }
-
-        private void SetupTableDataGridView()
-        {
-            SetupTableColumns();
-            SetupTableRows();
-        }
-
-        /// <summary> 
-        /// Method <c>SetupTableColumns</c> setups columns layout of <c>tableDatagridView</c>.
-        /// </summary>
-        private void SetupTableColumns()
-        {
-            for (int i = 0; i < _controller.GetColumnsNumber(); i++)
+            try
             {
-                string headerName = ColumnNameFromIndex(i);
-                string columnName = $"column{headerName}";
-                tableDataGridView.Columns.Add(columnName, headerName);
-                tableDataGridView.Columns[i].SortMode = DataGridViewColumnSortMode.NotSortable; 
+                _controller.UpdateExpressionInCell(cellID, expression);
+                return String.Empty;
+            }
+            catch (Exception e)
+            {
+                return ErrorTextForException(e);
             }
         }
 
@@ -134,21 +244,11 @@ namespace Lab1
             index /= alphabetSize;
             while (index > 0)
             {
-                name.Append((char) ('A' + index % alphabetSize - 1));
+                name.Append((char)('A' + index % alphabetSize - 1));
                 index /= alphabetSize;
             }
 
             return new string(name.ToString().Reverse().ToArray());
-        }
-
-        private void SetupTableRows()
-        {
-            tableDataGridView.Rows.Add(_controller.GetRowsNumber());
-
-            foreach(DataGridViewRow row in tableDataGridView.Rows)
-            {
-                row.HeaderCell.Value = (row.Index + 1).ToString();
-            }    
         }
 
         #endregion
