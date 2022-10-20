@@ -78,6 +78,10 @@ namespace Lab1
             {
                 return $"Застосування операції мод до нецілочисленного операнда: {GetMarkedSubstring(e)}";
             }
+            catch (InfiniteRecursionException)
+            {
+                return $"У виразі присутня нескінченна рекурсія";
+            }
             catch (ExpressionCalculationException e)
             {
                 return $"Невизначена помилка під час обчислення: {GetMarkedSubstring(e)}";

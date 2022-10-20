@@ -39,6 +39,10 @@ namespace Lab1.Models.Parsers.antlr4
             {
                 return _table.GetCell(cellID).GetValue();
             }
+            catch (InfiniteRecursionException)
+            {
+                throw;
+            }
             catch (ExpressionCalculationException)
             {
                 throw new InvalidExpressionInReferencedCellException(cellID);
