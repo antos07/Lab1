@@ -18,7 +18,7 @@ namespace Lab1.Models.Expressions
         
         public bool Calculate(ITable forTable)
         {
-            return _value != null && _value != String.Empty;
+            return false;
         }
 
         override public string ToString()
