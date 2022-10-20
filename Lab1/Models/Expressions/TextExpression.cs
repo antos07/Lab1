@@ -21,6 +21,11 @@ namespace Lab1.Models.Expressions
             return false;
         }
 
+        public bool IsValid(ITable forTable)
+        {
+            return true;
+        }
+
         override public string ToString()
         {
             return _value;

@@ -18,5 +18,10 @@ namespace Lab1.Models.Expressions
             throw new Exceptions.InvalidExpressionException($"Trying to call invalid expression '{ToString()}'",
                 this, 0, ToString().Length);
         }
+
+        public new bool IsValid(ITable forTable)
+        {
+            return false;
+        }
     }
 }

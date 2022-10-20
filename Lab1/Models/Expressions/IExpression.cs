@@ -12,5 +12,7 @@ namespace Lab1.Models.Expressions
         string ToString();
 
         bool Calculate(ITable forTable);
+
+        bool IsValid(ITable forTable);
     }
 }
