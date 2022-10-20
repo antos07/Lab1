@@ -8,6 +8,7 @@ namespace Lab1.Models.Parsers.Exceptions
 {
     public class ParserException : Exception
     {
-
+        public ParserException(string message) : base(message)
+        { }
     }
 }

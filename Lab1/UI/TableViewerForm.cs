@@ -187,9 +187,9 @@ namespace Lab1
             {
                 throw exception;
             }
-            catch (ParserException)
+            catch (ParserException e)
             {
-                return "Syntax error";
+                return "Syntax error: " + e.Message;
             }
             catch (ZeroDevisionInExpressionException e)
             {

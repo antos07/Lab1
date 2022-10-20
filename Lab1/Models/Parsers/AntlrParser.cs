@@ -42,7 +42,7 @@ namespace Lab1.Models.Parsers
 
         static private Exception NewParserException(ParserError error)
         {
-            return new Exceptions.ParserException();
+            return new Exceptions.ParserException(error.Message);
         }
     }
 }
