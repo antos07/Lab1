@@ -57,7 +57,7 @@ namespace Lab1.Models.Expressions
 
         public string ToString()
         {
-            return _tree.GetText();
+            return _tree.booleanExpression().GetText();
         }
     }
 }
