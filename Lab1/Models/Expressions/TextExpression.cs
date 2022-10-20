@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Lab1.Models.Expressions
 {
-    internal class TextExpression : IExpression
+    public class TextExpression : IExpression
     {
         private readonly string _value;
 
