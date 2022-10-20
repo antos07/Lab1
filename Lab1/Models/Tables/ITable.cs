@@ -9,9 +9,9 @@ namespace Lab1.Models.Tables
 {
     public interface ITable
     {
-        public int ColumnsNamber { get; }
+        public int ColumnsNumber { get; }
 
-        public int RowsNamber { get; }
+        public int RowsNumber { get; }
 
         public ICell GetCell(string cell);
 

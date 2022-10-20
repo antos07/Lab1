@@ -19,7 +19,7 @@ namespace Lab1.UI
 
         private void openTableButton_Click(object sender, EventArgs e)
         {
-            if (openTableDialog.ShowDialog() == DialogResult.OK)
+            if (openTableDialog.ShowDialog(this) == DialogResult.OK)
             {
                 _controller.OpenTable(openTableDialog.FileName);
                 OpenTable();

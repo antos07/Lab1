@@ -25,11 +25,37 @@ namespace Lab1
             _controller = controller;
         }
 
-        #region Additional handlers
+        #region Handlers
         private void SetupHandlers()
         {
             tableDataGridView.CellBeginEdit += tableDataGridView_CellBeginEdit;
             tableDataGridView.CellEndEdit += tableDataGridView_CellEndEdit;
+            FormClosing += TableViewerForm_FormClosing;
+        }
+
+        private void TableViewerForm_Load(object sender, EventArgs e)
+        {
+            SetupTableDataGridView();
+
+            DisplayAllExpressionValues();
+            UpdateAllErrorMessages();
+        }
+
+        private void TableViewerForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            switch (MessageBox.Show("Хочете зберегти у файл?", "Електронні таблиці", MessageBoxButtons.YesNoCancel))
+            {
+                case DialogResult.Yes:
+                    if (!SaveToFile())
+                        e.Cancel = true;
+                    break;
+                case DialogResult.Cancel:
+                    e.Cancel = true;
+                    break;
+                case DialogResult.No:
+                default:
+                    break;
+            }
         }
 
         private void tableDataGridView_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
@@ -74,14 +100,14 @@ namespace Lab1
             DisplayAllExpressionValues();
         }
 
+        private void saveTableToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SaveToFile();
+        }
+
         #endregion
 
         #region tableDataGridView setup
-
-        private void TableViewerForm_Load(object sender, EventArgs e)
-        {
-            SetupTableDataGridView();
-        }
 
         private void SetupTableDataGridView()
         {
@@ -181,6 +207,27 @@ namespace Lab1
             }
         }
 
+        private void UpdateAllErrorMessages()
+        {
+            foreach (DataGridViewRow row in tableDataGridView.Rows)
+            {
+                foreach (DataGridViewTextBoxCell cell in row.Cells)
+                {
+                    UpdateErrorMessage(cell);
+                }
+            }
+        }
+
+        private void UpdateErrorMessage(DataGridViewTextBoxCell cell)
+        {
+            string cellId = GetCellID(cell);
+            string expression = _controller.GetCellExpression(cellId);
+            if (expression == string.Empty)
+                return;
+
+            cell.ErrorText = UpdateExpressionInCellAndGetErrorText(cellId, expression);
+        }
+
         private string ErrorTextForException(Exception exception)
         {
             try
@@ -249,6 +296,21 @@ namespace Lab1
             }
 
             return new string(name.ToString().Reverse().ToArray());
+        }
+
+        bool SaveToFile()
+        {
+            if (saveFileDialog.ShowDialog(this) == DialogResult.OK)
+            {
+                string fileName = saveFileDialog.FileName;
+                if (!_controller.SaveTable(fileName))
+                {
+                    MessageBox.Show("Не вдалося збрегти файл");
+                    return false;
+                }
+                return true;
+            }
+            return false;
         }
 
         #endregion

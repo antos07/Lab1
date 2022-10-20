@@ -10,13 +10,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms.Design;
+using Lab1.Utils;
 
 namespace Lab1
 {
     public class Controller
     {
         private readonly IParser _parser;
-        private SimpleTable? _table;
+        private ITable? _table;
 
         public Controller(IParser parser)
         {
@@ -28,20 +29,49 @@ namespace Lab1
             _table = new SimpleTable();
         }
 
-        public void OpenTable(string filename)
+        public bool OpenTable(string fileName)
         {
-            _table = new SimpleTable();
+            try
+            {
+                string json = File.ReadAllText(fileName);
+                _table = TableSerializer.Deserialize(json, _parser);
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+        public bool SaveTable(string fileName)
+        {
+            InsureTableOpened();
+            try
+            {
+                string json = TableSerializer.Serialize(_table);
+                File.WriteAllText(fileName, json);
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        public void CloseTable()
+        {
+            InsureTableOpened();
+            _table = null;
         }
 
         public int GetColumnsNumber()
         {
             InsureTableOpened();
-            return _table.ColumnsNamber;
+            return _table.ColumnsNumber;
         }
 
         public int GetRowsNumber()
         {
-            return _table.RowsNamber;
+            return _table.RowsNumber;
         }
 
         /// <summary>
