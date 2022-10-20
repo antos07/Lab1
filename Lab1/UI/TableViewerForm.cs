@@ -72,7 +72,7 @@ namespace Lab1
             }
             catch (ReferencedInvalidExpressionException e)
             {
-                return $"Звертання до невірного виразу у {e.CellId}: {GetMarkedSubstring(e)}";
+                return $"Звертання до невірного виразу у {e.CellId}";
             }
             catch (ModForNonintegersException e)
             {
