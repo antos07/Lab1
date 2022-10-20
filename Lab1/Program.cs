@@ -11,7 +11,8 @@ namespace Lab1
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            Application.Run(new UI.MainMenu(new Controller(new Parsers.SimpleParser())));
+
+            Application.Run(new UI.MainMenu(new Controller(new Models.Parsers.AntlrParser())));
         }
     }
 }
