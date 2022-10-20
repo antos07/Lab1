@@ -35,6 +35,15 @@ namespace Lab1.Models.Expressions
                 throw new Exceptions.ModForNonintegersException($"Using mod with nonintegers '{ToString()}'",
                     this, e.StartPos, e.EndPos);
             }
+            catch (InvalidExpressionInReferencedCellException e)
+            {
+                string exp = ToString();
+                int startPos = exp.IndexOf(e.CellId);
+                int endPos = startPos + e.CellId.Length;
+
+                throw new Exceptions.ReferencedInvalidExpressionException($"Referncing invalid expression in {e.CellId}",
+                    this, startPos, endPos, e.CellId);
+            }
         }
 
         public string ToString()
