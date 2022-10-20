@@ -5,6 +5,9 @@ grammar Expressions;
  */
 
 // available operators and functions: +, -, *, /, <, >, =, not(x), max(x, y), min(x, y), and, or, >=, <=, <> 
+
+expressionInCell: booleanExpression EOF;
+
 booleanExpression:
 	NOT OPENING_BRACKET booleanExpression CLOSING_BRACKET			# notBoolExpr
 	| OPENING_BRACKET booleanExpression CLOSING_BRACKET				# parenthesisBoolExp

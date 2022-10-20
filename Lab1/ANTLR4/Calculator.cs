@@ -15,6 +15,12 @@ namespace Lab1.Models.Parsers.antlr4
             _table = table;
         }
 
+        public override dynamic VisitExpressionInCell([NotNull] ExpressionsParser.ExpressionInCellContext context)
+        {
+            return Visit(context.booleanExpression());
+        }
+
+
         #region boolExpression visitors
         public override dynamic VisitAndBoolExp([NotNull] ExpressionsParser.AndBoolExpContext context)
         {
@@ -106,7 +112,7 @@ namespace Lab1.Models.Parsers.antlr4
                 throw new RationalModException(context.Start.StartIndex, context.Stop.StopIndex);
             if (y.WholePart == 0)
                 throw new ZeroDevisionInVisitorException(context.Start.StartIndex, context.Stop.StopIndex);
-           
+
             return new BigRational(x.WholePart % y.WholePart);
         }
 

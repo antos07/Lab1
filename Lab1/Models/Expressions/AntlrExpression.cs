@@ -10,9 +10,9 @@ namespace Lab1.Models.Expressions
 {
     public class AntlrExpression : IExpression
     {
-        private ExpressionsParser.BooleanExpressionContext _tree;
+        private ExpressionsParser.ExpressionInCellContext _tree;
 
-        public AntlrExpression(ExpressionsParser.BooleanExpressionContext tree)
+        public AntlrExpression(ExpressionsParser.ExpressionInCellContext tree)
         {
             _tree = tree;
         }

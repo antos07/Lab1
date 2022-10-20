@@ -32,6 +32,12 @@ using IToken = Antlr4.Runtime.IToken;
 [System.CLSCompliant(false)]
 public interface IExpressionsVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <summary>
+	/// Visit a parse tree produced by <see cref="ExpressionsParser.expressionInCell"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitExpressionInCell([NotNull] ExpressionsParser.ExpressionInCellContext context);
+	/// <summary>
 	/// Visit a parse tree produced by the <c>cellIdBoolExp</c>
 	/// labeled alternative in <see cref="ExpressionsParser.booleanExpression"/>.
 	/// </summary>

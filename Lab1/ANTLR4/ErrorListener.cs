@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Lab1.ANTLR4
 {
-    public class ErrorListener : BaseErrorListener
+    public class ErrorListener : BaseErrorListener, IAntlrErrorListener<int>
     {
         public List<ParserError> Errors { get; }
 
@@ -18,7 +18,12 @@ namespace Lab1.ANTLR4
 
         public override void SyntaxError(TextWriter output, IRecognizer recognizer, IToken offendingSymbol, int line, int charPositionInLine, string msg, RecognitionException e)
         {
-            Errors.Add(new ParserError(msg, offendingSymbol, line, charPositionInLine));
+            Errors.Add(new ParserError(msg, offendingSymbol, line, charPositionInLine, e));
+        }
+
+        public void SyntaxError(TextWriter output, IRecognizer recognizer, int offendingSymbol, int line, int charPositionInLine, string msg, RecognitionException e)
+        {
+            Errors.Add(new ParserError(msg, null, line, charPositionInLine, e));
         }
     }
 }

@@ -17,12 +17,16 @@ namespace Lab1.ANTLR4
 
         public int CharPositionInLine { get; }
 
-        public ParserError(string message, IToken? token, int line, int charPositionInLine)
+        public Exception SuppressedException { get; }
+             
+
+        public ParserError(string message, IToken? token, int line, int charPositionInLine, Exception suppressedException)
         {
             Message = message;
             Token = token;
             Line = line;
             CharPositionInLine = charPositionInLine;
+            SuppressedException = suppressedException;
         }
     }
 }
