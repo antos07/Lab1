@@ -39,9 +39,8 @@ namespace Lab1.Models.Parsers.antlr4
             {
                 return _table.GetCell(cellID).GetValue();
             }
-            catch (InvalidExpressionException)
+            catch (ExpressionCalculationException)
             {
-                MessageBox.Show($"Error in {cellID}");
                 throw new InvalidExpressionInReferencedCellException(cellID);
             }
         }
