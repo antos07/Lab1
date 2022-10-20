@@ -14,8 +14,12 @@ namespace Lab1.Models.Parsers
 {
     public class AntlrParser : IParser
     {
-        public IExpression ParseExpression(string expression)
+        public IExpression? ParseExpression(string expression)
         {
+            if (expression == string.Empty)
+                return null;
+
+
             var inputStream = new AntlrInputStream(expression);
 
             var errorListener = new ErrorListener();

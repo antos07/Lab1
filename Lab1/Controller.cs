@@ -69,22 +69,23 @@ namespace Lab1
             cell.GetValue();
         }
 
-            public string GetCellValue(string cell)
-            {
-                InsureTableOpened();
-                return _table.GetCell(cell).GetValue().ToString();
-            }
+        public bool GetCellValue(string cell)
+        {
+            InsureTableOpened();
+            return _table.GetCell(cell).GetValue();
+        }
 
-            public string GetCellExpression(string cell)
-            {
-                InsureTableOpened();
-                return _table.GetCell(cell).Expression.ToString();
-            }
+        public string GetCellExpression(string cell)
+        {
+            InsureTableOpened();
+            IExpression? expression = _table.GetCell(cell).Expression;
+            return expression == null ? String.Empty : expression.ToString();
+        }
 
-            private void InsureTableOpened()
-            {
-                if (_table == null)
-                    throw new ApplicationException();
-            }
+        private void InsureTableOpened()
+        {
+            if (_table == null)
+                throw new ApplicationException();
         }
     }
+}
