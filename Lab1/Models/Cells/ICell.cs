@@ -10,6 +10,6 @@ namespace Lab1.Models.Cells
     public interface ICell
     {
         public IExpression? Expression { get; set; }
-        public bool Value { get; }
+        public bool GetValue();
     }
 }

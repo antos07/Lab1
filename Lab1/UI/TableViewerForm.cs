@@ -8,6 +8,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+using Lab1.Models.Parsers.Exceptions;
+using Lab1.Models.Expressions.Exceptions;
+using Lab1.Models.Expressions;
+
 namespace Lab1
 {
     public partial class TableViewerForm : Form
@@ -34,16 +38,55 @@ namespace Lab1
             DataGridViewCell cell = tableDataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex];
             if (cell.Value != null)
             {
-                cell.ErrorText = String.Empty;
-                _controller.UpdateExpressionInCell(GetCellID(cell), cell.Value.ToString());
-                MessageBox.Show(GetCellID(cell) + ": " + cell.Value.ToString());
+                string expression = GetExpression(cell);
+                if (expression.Length == 0)
+                    return;
+                cell.ErrorText = UpdateExpressionInCellAndGetErrorText(GetCellID(cell), expression);
             }
         }
-
 
         private static string GetCellID(DataGridViewCell cell)
         {
             return cell.OwningColumn.HeaderCell.Value.ToString() + cell.OwningRow.HeaderCell.Value.ToString();
+        }
+
+        private static string GetExpression(DataGridViewCell cell)
+        {
+            return cell.Value.ToString().Trim();
+        }
+
+        private string UpdateExpressionInCellAndGetErrorText(string cellID, string expression)
+        {
+            try
+            {
+                _controller.UpdateExpressionInCell(cellID, expression);
+                return String.Empty;
+            }
+            catch (ParserException)
+            {
+                return "Syntax error";
+            }
+            catch (ZeroDevisionInExpressionException e)
+            {
+                return $"Ділення на 0 у виразі: {GetMarkedSubstring(e)}";
+            }
+            catch (ReferencedInvalidExpressionException e)
+            {
+                return $"Звертання до невірного виразу у {e.CellId}: {GetMarkedSubstring(e)}";
+            }
+            catch (ModForNonintegersException e)
+            {
+                return $"Застосування операції мод до нецілочисленного операнда: {GetMarkedSubstring(e)}";
+            }
+            catch (ExpressionCalculationException e)
+            {
+                return $"Невизначена помилка під час обчислення: {GetMarkedSubstring(e)}";
+            }
+        }
+
+        private static string GetMarkedSubstring(ExpressionCalculationException e)
+        {
+            return e.Expression.ToString().Substring(e.StartPos, e.EndPos - e.StartPos);
         }
         #endregion
 

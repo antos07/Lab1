@@ -1,5 +1,7 @@
 ﻿using Lab1.Models.Cells;
 using Lab1.Models.Expressions;
+using ExpExceptions = Lab1.Models.Expressions.Exceptions;
+using Lab1.Models.Parsers.Exceptions;
 using Lab1.Models.Tables;
 using Lab1.Parsers;
 using System;
@@ -22,11 +24,11 @@ namespace Lab1
         }
 
         public void CreteTable()
-        { 
+        {
             _table = new SimpleTable();
         }
 
-        public void OpenTable(string filename) 
+        public void OpenTable(string filename)
         {
             _table = new SimpleTable();
         }
@@ -42,30 +44,47 @@ namespace Lab1
             return _table.RowsNamber;
         }
 
-        public void UpdateExpressionInCell(string cellID, string? expression)
+        /// <summary>
+        /// Updates expression in cell. All exceptions are propagated to the View so it can display them correctly.
+        /// </summary>
+        /// <param name="cellID">Id of the cell</param>
+        /// <param name="expression">New expression</param>
+        /// <returns></returns>
+        public void UpdateExpressionInCell(string cellID, string expression)
         {
             InsureTableOpened();
 
             ICell cell = _table.GetCell(cellID);
-            cell.Expression = expression != null ? _parser.ParseExpression(expression) : new TextExpression(String.Empty);
+            try
+            {
+                cell.Expression = _parser.ParseExpression(expression);
+            }
+            catch (ParserException)
+            {
+                cell.Expression = new InvalidExpression(expression);
+                throw;
+            }
+
+            // checking for runtime errors
+            cell.GetValue();
         }
 
-        public string GetCellValue(string cell)
-        {
-            InsureTableOpened();
-            return _table.GetCell(cell).Value.ToString();
-        }
+            public string GetCellValue(string cell)
+            {
+                InsureTableOpened();
+                return _table.GetCell(cell).GetValue().ToString();
+            }
 
-        public string GetCellExpression(string cell)
-        {
-            InsureTableOpened();
-            return _table.GetCell(cell).Expression.ToString();
-        }
+            public string GetCellExpression(string cell)
+            {
+                InsureTableOpened();
+                return _table.GetCell(cell).Expression.ToString();
+            }
 
-        private void InsureTableOpened()
-        {
-            if (_table == null)
-                throw new ApplicationException();
+            private void InsureTableOpened()
+            {
+                if (_table == null)
+                    throw new ApplicationException();
+            }
         }
     }
-}

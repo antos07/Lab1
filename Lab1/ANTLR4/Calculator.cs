@@ -37,10 +37,11 @@ namespace Lab1.Models.Parsers.antlr4
 
             try
             {
-                return _table.GetCell(cellID).Value;
+                return _table.GetCell(cellID).GetValue();
             }
             catch (InvalidExpressionException)
             {
+                MessageBox.Show($"Error in {cellID}");
                 throw new InvalidExpressionInReferencedCellException(cellID);
             }
         }
@@ -117,9 +118,9 @@ namespace Lab1.Models.Parsers.antlr4
             BigRational y = Visit(context.arithmeticExpression(1));
 
             if (x.FractionalPart != 0 || y.FractionalPart != 0)
-                throw new RationalModException(context.Start.StartIndex, context.Stop.StopIndex);
+                throw new RationalModException(context.Start.StartIndex, context.Stop.StopIndex + 1);
             if (y.WholePart == 0)
-                throw new ZeroDevisionInVisitorException(context.Start.StartIndex, context.Stop.StopIndex);
+                throw new ZeroDevisionInVisitorException(context.Start.StartIndex, context.Stop.StopIndex + 1);
 
             return new BigRational(x.WholePart % y.WholePart);
         }
@@ -132,7 +133,7 @@ namespace Lab1.Models.Parsers.antlr4
             if (context.MULTIPLY() != null)
                 return x * y;
             if (y == 0)
-                throw new ZeroDevisionInVisitorException(context.Start.StartIndex, context.Stop.StopIndex);
+                throw new ZeroDevisionInVisitorException(context.Start.StartIndex, context.Stop.StopIndex + 1);
             if (context.DIVIDE() != null)
                 return x / y;
             else
