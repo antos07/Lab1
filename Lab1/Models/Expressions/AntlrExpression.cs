@@ -11,28 +11,13 @@ namespace Lab1.Models.Expressions
 {
     public class AntlrExpression : IExpression
     {
-        private ExpressionsParser.ExpressionInCellContext? _tree;
-        private string? _textRepresentation;
-        private string? _errorDescription;
+        private ExpressionsParser.ExpressionInCellContext _tree;
+        private ParserError? _error;
 
-        /// <summary>
-        /// Construcrtor for a valid expression.
-        /// </summary>
-        /// <param name="tree">AST for this expression</param>
-        public AntlrExpression(ExpressionsParser.ExpressionInCellContext tree)
+        public AntlrExpression(ExpressionsParser.ExpressionInCellContext tree, ParserError? error)
         {
             _tree = tree;
-        }
-
-        /// <summary>
-        /// Construcor for invalid expression.
-        /// </summary>
-        /// <param name="textRepresentation">Text representation of the expression</param>
-        /// <param name="errorDescription">Error description</param>
-        public AntlrExpression(string textRepresentation, string errorDescription)
-        {
-            _textRepresentation = textRepresentation;
-            _errorDescription = errorDescription;
+            _error = error;
         }
 
         public bool Calculate(ITable forTable)
