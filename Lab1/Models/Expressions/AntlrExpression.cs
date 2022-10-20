@@ -46,19 +46,6 @@ namespace Lab1.Models.Expressions
             }
         }
 
-        public bool IsValid(ITable forTable)
-        {
-            try
-            {
-                Calculate(forTable);
-                return true;
-            }
-            catch(Exceptions.ExpressionCalculationException)
-            {
-                return false;
-            }
-        }
-
         public string ToString()
         {
             return _tree.GetText();
