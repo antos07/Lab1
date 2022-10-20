@@ -8,8 +8,8 @@ namespace Lab1.ANTLR4
 {
     public class ZeroDevisionInVisitorException : Exception
     {
-        int StartPos { get; }
-        int EndPos { get; }
+        public int StartPos { get; }
+        public int EndPos { get; }
 
         public ZeroDevisionInVisitorException(int startPos, int endPos) : base()
         {
