@@ -198,6 +198,9 @@ namespace Lab1
 
         void DisplayCellExpression(DataGridViewCell cell)
         {
+            if (cell.IsInEditMode)
+                return;
+
             string cellId = GetCellID(cell);
             cell.Value = _controller.GetCellExpression(cellId);
             try
@@ -215,6 +218,9 @@ namespace Lab1
 
         private void DisplayCellExpressionValue(DataGridViewCell cell)
         {
+            if (cell.IsInEditMode)
+                return;
+
             string cellId = GetCellID(cell);
             try
             {
