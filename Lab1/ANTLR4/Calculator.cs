@@ -4,6 +4,7 @@ using Lab1.Models.Tables;
 using ExtendedNumerics;
 using Antlr4.Runtime.Tree;
 using Lab1.Models.Expressions.Exceptions;
+using Antlr4.Runtime;
 
 namespace Lab1.Models.Parsers.antlr4
 {
@@ -18,7 +19,18 @@ namespace Lab1.Models.Parsers.antlr4
 
         public override dynamic VisitExpressionInCell([NotNull] ExpressionsParser.ExpressionInCellContext context)
         {
-            return Visit(context.booleanExpression());
+            if (context.booleanExpression() != null)
+                return Visit(context.booleanExpression());
+            else
+                return Visit(context.arithmeticExpression());
+        }
+
+        private T VisitTyped<T>([NotNull] ParserRuleContext context)
+        {
+            dynamic value = Visit(context);
+            if (value is not T)
+                throw new WrongValueTypeException(context.Start.StartIndex, context.Stop.StopIndex + 1, typeof(T), value.GetType());
+            return (T)value;
         }
 
 
@@ -51,8 +63,8 @@ namespace Lab1.Models.Parsers.antlr4
 
         public override dynamic VisitCompBoolExp([NotNull] ExpressionsParser.CompBoolExpContext context)
         {
-            BigRational left = Visit(context.arithmeticExpression(0));
-            BigRational right = Visit(context.arithmeticExpression(1));
+            BigRational left = VisitTyped<BigRational>(context.arithmeticExpression(0));
+            BigRational right = VisitTyped<BigRational>(context.arithmeticExpression(1));
             string comparisonOperator = context.COMPARISON_OPERATOR().GetText();
 
             switch (comparisonOperator)
@@ -76,23 +88,21 @@ namespace Lab1.Models.Parsers.antlr4
 
         public override dynamic VisitNotBoolExpr([NotNull] ExpressionsParser.NotBoolExprContext context)
         {
-            return !Visit(context.booleanExpression());
+            return !VisitTyped<bool>(context.booleanExpression());
         }
 
         public override dynamic VisitOrBoolExp([NotNull] ExpressionsParser.OrBoolExpContext context)
         {
-            bool left = Visit(context.booleanExpression(0));
-            bool right = Visit(context.booleanExpression(1));
+            bool left = VisitTyped<bool>(context.booleanExpression(0));
+            bool right = VisitTyped<bool>(context.booleanExpression(1));
 
             return left || right;
         }
 
         public override dynamic VisitParenthesisBoolExp([NotNull] ExpressionsParser.ParenthesisBoolExpContext context)
         {
-            return Visit(context.booleanExpression());
+            return VisitTyped<bool>(context.booleanExpression());
         }
-
-
 
         #endregion
 
@@ -101,8 +111,8 @@ namespace Lab1.Models.Parsers.antlr4
         public override dynamic VisitFunctionArExp([NotNull] ExpressionsParser.FunctionArExpContext context)
         {
             string function = context.FUNCTION().GetText();
-            BigRational x = Visit(context.arithmeticExpression(0));
-            BigRational y = Visit(context.arithmeticExpression(1));
+            BigRational x = VisitTyped<BigRational>(context.arithmeticExpression(0));
+            BigRational y = VisitTyped<BigRational>(context.arithmeticExpression(1));
 
             switch (function)
             {
@@ -117,8 +127,8 @@ namespace Lab1.Models.Parsers.antlr4
 
         public override dynamic VisitModArExp([NotNull] ExpressionsParser.ModArExpContext context)
         {
-            BigRational x = Visit(context.arithmeticExpression(0));
-            BigRational y = Visit(context.arithmeticExpression(1));
+            BigRational x = VisitTyped<BigRational>(context.arithmeticExpression(0));
+            BigRational y = VisitTyped<BigRational>(context.arithmeticExpression(1));
 
             if (x.FractionalPart != 0 || y.FractionalPart != 0)
                 throw new RationalModException(context.Start.StartIndex, context.Stop.StopIndex + 1);
@@ -130,8 +140,8 @@ namespace Lab1.Models.Parsers.antlr4
 
         public override dynamic VisitMultDivArExp([NotNull] ExpressionsParser.MultDivArExpContext context)
         {
-            BigRational x = Visit(context.arithmeticExpression(0));
-            BigRational y = Visit(context.arithmeticExpression(1));
+            BigRational x = VisitTyped<BigRational>(context.arithmeticExpression(0));
+            BigRational y = VisitTyped<BigRational>(context.arithmeticExpression(1));
 
             if (context.MULTIPLY() != null)
                 return x * y;
@@ -145,8 +155,8 @@ namespace Lab1.Models.Parsers.antlr4
 
         public override dynamic VisitPlusMinusArExp([NotNull] ExpressionsParser.PlusMinusArExpContext context)
         {
-            BigRational x = Visit(context.arithmeticExpression(0));
-            BigRational y = Visit(context.arithmeticExpression(1));
+            BigRational x = VisitTyped<BigRational>(context.arithmeticExpression(0));
+            BigRational y = VisitTyped<BigRational>(context.arithmeticExpression(1));
 
             if (context.PLUS() != null)
                 return x + y;
@@ -172,7 +182,23 @@ namespace Lab1.Models.Parsers.antlr4
             return Visit(context.arithmeticExpression());
         }
 
+        public override dynamic VisitCellIdArExp([NotNull] ExpressionsParser.CellIdArExpContext context)
+        {
+            string cellID = context.CELL_ID().GetText();
 
+            try
+            {
+                return _table.GetCell(cellID).GetValue();
+            }
+            catch (InfiniteRecursionException)
+            {
+                throw;
+            }
+            catch (ExpressionCalculationException)
+            {
+                throw new InvalidExpressionInReferencedCellException(cellID);
+            }
+        }
 
         #endregion
 

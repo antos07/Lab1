@@ -1,9 +1,11 @@
-﻿using Lab1.ANTLR4;
+﻿using ExtendedNumerics;
+using Lab1.ANTLR4;
 using Lab1.Models.Parsers.antlr4;
 using Lab1.Models.Tables;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -13,13 +15,15 @@ namespace Lab1.Models.Expressions
     {
         private ExpressionsParser.ExpressionInCellContext _tree;
         private bool _calculating = false;
+        private string _textRepresentation;
 
-        public AntlrExpression(ExpressionsParser.ExpressionInCellContext tree)
+        public AntlrExpression(ExpressionsParser.ExpressionInCellContext tree, string textRepresentation)
         {
             _tree = tree;
+            _textRepresentation = textRepresentation;
         }
 
-        public bool Calculate(ITable forTable)
+        public object Calculate(ITable forTable)
         {
             if (_calculating)
                 throw new Exceptions.InfiniteRecursionException($"Expression '{ToString()}' includes infinite recursion",
@@ -49,6 +53,11 @@ namespace Lab1.Models.Expressions
                 throw new Exceptions.ReferencedInvalidExpressionException($"Referncing invalid expression in {e.CellId}",
                     this, startPos, endPos, e.CellId);
             }
+            catch (WrongValueTypeException e)
+            {
+                throw new Exceptions.WrongTypeException($"Operand has unexpected type in '{ToString()}'",
+                    this, e.StartPos, e.EndPos, e.ExpectedType, e.ActualType);
+            }
             finally
             {
                 _calculating = false;
@@ -57,7 +66,7 @@ namespace Lab1.Models.Expressions
 
         public string ToString()
         {
-            return _tree.booleanExpression().GetText();
+            return _textRepresentation;
         }
     }
 }

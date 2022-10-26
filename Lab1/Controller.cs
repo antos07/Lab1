@@ -99,7 +99,7 @@ namespace Lab1
             cell.GetValue();
         }
 
-        public bool GetCellValue(string cell)
+        public object GetCellValue(string cell)
         {
             InsureTableOpened();
             return _table.GetCell(cell).GetValue();

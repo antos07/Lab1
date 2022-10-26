@@ -6,7 +6,7 @@ grammar Expressions;
 
 // available operators and functions: +, -, *, /, <, >, =, not(x), max(x, y), min(x, y), and, or, >=, <=, <> 
 
-expressionInCell: booleanExpression EOF;
+expressionInCell: (booleanExpression | arithmeticExpression) EOF;
 
 booleanExpression:
 	NOT OPENING_BRACKET booleanExpression CLOSING_BRACKET			# notBoolExpr
@@ -23,7 +23,8 @@ arithmeticExpression:
 	| arithmeticExpression (MULTIPLY | DIVIDE | DIV) arithmeticExpression						# multDivArExp
 	| arithmeticExpression (PLUS | MINUS) arithmeticExpression									# plusMinusArExp
 	| OPENING_BRACKET (PLUS | MINUS) UNSIGNED_NUMBER CLOSING_BRACKET							# signedNumericExp
-	| UNSIGNED_NUMBER																			# unsignedNumericArExp;
+	| UNSIGNED_NUMBER																			# unsignedNumericArExp
+	| CELL_ID																					# cellIdArExp;
 
 /*
  * Lexer Rules

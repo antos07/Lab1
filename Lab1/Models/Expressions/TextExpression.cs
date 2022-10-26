@@ -16,7 +16,7 @@ namespace Lab1.Models.Expressions
             _value = value;
         }
         
-        virtual public bool Calculate(ITable forTable)
+        virtual public object Calculate(ITable forTable)
         {
             return false;
         }

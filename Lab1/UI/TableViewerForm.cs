@@ -10,6 +10,8 @@ using System.Windows.Forms;
 using Lab1.Models.Parsers.Exceptions;
 using Lab1.Models.Expressions.Exceptions;
 using Lab1.Models.Expressions;
+using System.CodeDom;
+using ExtendedNumerics;
 
 namespace Lab1
 {
@@ -224,7 +226,12 @@ namespace Lab1
             string cellId = GetCellID(cell);
             try
             {
-                bool cellValue = _controller.GetCellValue(cellId);
+                object? cellValue = _controller.GetCellValue(cellId);
+                if (cellValue is BigRational && cellValue != null)
+                {
+                    BigRational t = (BigRational)cellValue;
+                    cellValue = (t.WholePart == 0 ? (decimal)t.FractionalPart : (decimal)t);
+                }
                 cell.Value = _controller.GetCellExpression(cellId) != String.Empty ? cellValue.ToString() : String.Empty;
                 cell.ErrorText = String.Empty;
             }
@@ -307,6 +314,15 @@ namespace Lab1
             catch (InfiniteRecursionException)
             {
                 return $"У виразі присутня нескінченна рекурсія";
+            }
+            catch (WrongTypeException e)
+            {
+                string message;
+                if (e.ExpectedType == typeof(bool))
+                    message = "Очікується логічний вираз замість ";
+                else 
+                    message = "Очікується арефмітичний вираз замість ";
+                return message + GetMarkedSubstring(e);
             }
             catch (ExpressionCalculationException e)
             {

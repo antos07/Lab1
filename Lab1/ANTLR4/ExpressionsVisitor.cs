@@ -94,6 +94,13 @@ public interface IExpressionsVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitPlusMinusArExp([NotNull] ExpressionsParser.PlusMinusArExpContext context);
 	/// <summary>
+	/// Visit a parse tree produced by the <c>cellIdArExp</c>
+	/// labeled alternative in <see cref="ExpressionsParser.arithmeticExpression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitCellIdArExp([NotNull] ExpressionsParser.CellIdArExpContext context);
+	/// <summary>
 	/// Visit a parse tree produced by the <c>functionArExp</c>
 	/// labeled alternative in <see cref="ExpressionsParser.arithmeticExpression"/>.
 	/// </summary>

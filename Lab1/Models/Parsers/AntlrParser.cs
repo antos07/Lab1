@@ -37,7 +37,7 @@ namespace Lab1.Models.Parsers
             if (errorListener.Errors.Count > 0)
                 throw NewParserException(errorListener.Errors[0]);
 
-            return new AntlrExpression(tree);
+            return new AntlrExpression(tree, expression);
         }
 
         static private Exception NewParserException(ParserError error)
