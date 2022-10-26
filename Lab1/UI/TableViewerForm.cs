@@ -384,5 +384,10 @@ namespace Lab1
         }
 
         #endregion
+
+        private void deleteCurrentRowToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

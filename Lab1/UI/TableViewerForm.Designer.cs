@@ -34,6 +34,14 @@
             this.openTabelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveTableToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.deleteCurrentRowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.deleteCurrentColumnToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.addRowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.addRowBeforeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.addRowBelowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.addColumnToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.addColumnLefyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.addColumnRightToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.appearenceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.updateAllCellsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.onlyExpressionsModeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -59,7 +67,7 @@
             this.helpToolStripMenuItem});
             this.TableViewerMenuStrip.Location = new System.Drawing.Point(0, 0);
             this.TableViewerMenuStrip.Name = "TableViewerMenuStrip";
-            this.TableViewerMenuStrip.Size = new System.Drawing.Size(1943, 52);
+            this.TableViewerMenuStrip.Size = new System.Drawing.Size(1943, 49);
             this.TableViewerMenuStrip.TabIndex = 0;
             this.TableViewerMenuStrip.Text = "menuStrip1";
             // 
@@ -70,35 +78,95 @@
             this.openTabelToolStripMenuItem,
             this.saveTableToolStripMenuItem});
             this.MenuToolStripMenuItem.Name = "MenuToolStripMenuItem";
-            this.MenuToolStripMenuItem.Size = new System.Drawing.Size(126, 48);
+            this.MenuToolStripMenuItem.Size = new System.Drawing.Size(126, 45);
             this.MenuToolStripMenuItem.Text = "Меню";
             // 
             // createNewTableToolStripMenuItem
             // 
             this.createNewTableToolStripMenuItem.Name = "createNewTableToolStripMenuItem";
-            this.createNewTableToolStripMenuItem.Size = new System.Drawing.Size(448, 54);
+            this.createNewTableToolStripMenuItem.Size = new System.Drawing.Size(430, 54);
             this.createNewTableToolStripMenuItem.Text = "Нова таблиця";
             this.createNewTableToolStripMenuItem.Click += new System.EventHandler(this.createNewTableToolStripMenuItem_Click);
             // 
             // openTabelToolStripMenuItem
             // 
             this.openTabelToolStripMenuItem.Name = "openTabelToolStripMenuItem";
-            this.openTabelToolStripMenuItem.Size = new System.Drawing.Size(448, 54);
+            this.openTabelToolStripMenuItem.Size = new System.Drawing.Size(430, 54);
             this.openTabelToolStripMenuItem.Text = "Відкрити таблицю";
             this.openTabelToolStripMenuItem.Click += new System.EventHandler(this.openTabelToolStripMenuItem_Click);
             // 
             // saveTableToolStripMenuItem
             // 
             this.saveTableToolStripMenuItem.Name = "saveTableToolStripMenuItem";
-            this.saveTableToolStripMenuItem.Size = new System.Drawing.Size(448, 54);
+            this.saveTableToolStripMenuItem.Size = new System.Drawing.Size(430, 54);
             this.saveTableToolStripMenuItem.Text = "Зберегти у файл";
             this.saveTableToolStripMenuItem.Click += new System.EventHandler(this.saveTableToolStripMenuItem_Click);
             // 
             // editToolStripMenuItem
             // 
+            this.editToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.deleteCurrentRowToolStripMenuItem,
+            this.deleteCurrentColumnToolStripMenuItem,
+            this.addRowToolStripMenuItem,
+            this.addColumnToolStripMenuItem});
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(212, 48);
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(212, 45);
             this.editToolStripMenuItem.Text = "Редагування";
+            // 
+            // deleteCurrentRowToolStripMenuItem
+            // 
+            this.deleteCurrentRowToolStripMenuItem.Name = "deleteCurrentRowToolStripMenuItem";
+            this.deleteCurrentRowToolStripMenuItem.Size = new System.Drawing.Size(586, 54);
+            this.deleteCurrentRowToolStripMenuItem.Text = "Видалити поточний рядок";
+            this.deleteCurrentRowToolStripMenuItem.Click += new System.EventHandler(this.deleteCurrentRowToolStripMenuItem_Click);
+            // 
+            // deleteCurrentColumnToolStripMenuItem
+            // 
+            this.deleteCurrentColumnToolStripMenuItem.Name = "deleteCurrentColumnToolStripMenuItem";
+            this.deleteCurrentColumnToolStripMenuItem.Size = new System.Drawing.Size(586, 54);
+            this.deleteCurrentColumnToolStripMenuItem.Text = "Видалити поточний стовпчик";
+            // 
+            // addRowToolStripMenuItem
+            // 
+            this.addRowToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.addRowBeforeToolStripMenuItem,
+            this.addRowBelowToolStripMenuItem});
+            this.addRowToolStripMenuItem.Name = "addRowToolStripMenuItem";
+            this.addRowToolStripMenuItem.Size = new System.Drawing.Size(586, 54);
+            this.addRowToolStripMenuItem.Text = "Додати рядок";
+            // 
+            // addRowBeforeToolStripMenuItem
+            // 
+            this.addRowBeforeToolStripMenuItem.Name = "addRowBeforeToolStripMenuItem";
+            this.addRowBeforeToolStripMenuItem.Size = new System.Drawing.Size(480, 54);
+            this.addRowBeforeToolStripMenuItem.Text = "Зверху від поточного";
+            // 
+            // addRowBelowToolStripMenuItem
+            // 
+            this.addRowBelowToolStripMenuItem.Name = "addRowBelowToolStripMenuItem";
+            this.addRowBelowToolStripMenuItem.Size = new System.Drawing.Size(480, 54);
+            this.addRowBelowToolStripMenuItem.Text = "Знизу від поточного";
+            // 
+            // addColumnToolStripMenuItem
+            // 
+            this.addColumnToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.addColumnLefyToolStripMenuItem,
+            this.addColumnRightToolStripMenuItem});
+            this.addColumnToolStripMenuItem.Name = "addColumnToolStripMenuItem";
+            this.addColumnToolStripMenuItem.Size = new System.Drawing.Size(586, 54);
+            this.addColumnToolStripMenuItem.Text = "Додати стовпчик";
+            // 
+            // addColumnLefyToolStripMenuItem
+            // 
+            this.addColumnLefyToolStripMenuItem.Name = "addColumnLefyToolStripMenuItem";
+            this.addColumnLefyToolStripMenuItem.Size = new System.Drawing.Size(485, 54);
+            this.addColumnLefyToolStripMenuItem.Text = "Зліва від поточного";
+            // 
+            // addColumnRightToolStripMenuItem
+            // 
+            this.addColumnRightToolStripMenuItem.Name = "addColumnRightToolStripMenuItem";
+            this.addColumnRightToolStripMenuItem.Size = new System.Drawing.Size(485, 54);
+            this.addColumnRightToolStripMenuItem.Text = "Справа від поточного";
             // 
             // appearenceToolStripMenuItem
             // 
@@ -106,7 +174,7 @@
             this.updateAllCellsToolStripMenuItem,
             this.onlyExpressionsModeToolStripMenuItem});
             this.appearenceToolStripMenuItem.Name = "appearenceToolStripMenuItem";
-            this.appearenceToolStripMenuItem.Size = new System.Drawing.Size(134, 48);
+            this.appearenceToolStripMenuItem.Size = new System.Drawing.Size(134, 45);
             this.appearenceToolStripMenuItem.Text = "Вигляд";
             // 
             // updateAllCellsToolStripMenuItem
@@ -130,7 +198,7 @@
             this.openHelpToolStripMenuItem,
             this.aboutProgramToolStripMenuItem});
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(150, 48);
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(150, 45);
             this.helpToolStripMenuItem.Text = "Довідка";
             // 
             // openHelpToolStripMenuItem
@@ -152,14 +220,14 @@
             this.tableDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.tableDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableDataGridView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
-            this.tableDataGridView.Location = new System.Drawing.Point(0, 52);
+            this.tableDataGridView.Location = new System.Drawing.Point(0, 49);
             this.tableDataGridView.MultiSelect = false;
             this.tableDataGridView.Name = "tableDataGridView";
             this.tableDataGridView.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             this.tableDataGridView.RowTemplate.Height = 49;
             this.tableDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.tableDataGridView.ShowEditingIcon = false;
-            this.tableDataGridView.Size = new System.Drawing.Size(1943, 1049);
+            this.tableDataGridView.Size = new System.Drawing.Size(1943, 1052);
             this.tableDataGridView.TabIndex = 1;
             // 
             // saveFileDialog
@@ -219,5 +287,13 @@
         private OpenFileDialog openTableDialog;
         private OpenFileDialog openFileDialog1;
         private OpenFileDialog openFileDialog;
+        private ToolStripMenuItem deleteCurrentRowToolStripMenuItem;
+        private ToolStripMenuItem deleteCurrentColumnToolStripMenuItem;
+        private ToolStripMenuItem addRowToolStripMenuItem;
+        private ToolStripMenuItem addRowBeforeToolStripMenuItem;
+        private ToolStripMenuItem addRowBelowToolStripMenuItem;
+        private ToolStripMenuItem addColumnToolStripMenuItem;
+        private ToolStripMenuItem addColumnLefyToolStripMenuItem;
+        private ToolStripMenuItem addColumnRightToolStripMenuItem;
     }
 }
