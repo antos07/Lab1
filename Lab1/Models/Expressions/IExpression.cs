@@ -9,7 +9,7 @@ namespace Lab1.Models.Expressions
 {
     public interface IExpression
     {
-        public List<string> ReferencedCells { get; }
+        public HashSet<string> ReferencedCells { get; }
 
         public  string ToString();
 

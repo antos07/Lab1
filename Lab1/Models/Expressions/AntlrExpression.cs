@@ -25,7 +25,7 @@ namespace Lab1.Models.Expressions
             ReferencedCells = FindCellReferences();
         }
 
-        public List<string> ReferencedCells { get; }
+        public HashSet<string> ReferencedCells { get; }
 
         public virtual object Calculate(ITable forTable)
         {
@@ -73,7 +73,7 @@ namespace Lab1.Models.Expressions
             return _textRepresentation;
         }
 
-        private List<string> FindCellReferences()
+        private HashSet<string> FindCellReferences()
         {
             var finder = new CellReferencesFinder();
             finder.Visit(_tree);

@@ -16,7 +16,7 @@ namespace Lab1.Models.Expressions
             _value = value;
         }
 
-        public List<string> ReferencedCells => new List<string>();
+        public HashSet<string> ReferencedCells => new HashSet<string>();
 
         virtual public object Calculate(ITable forTable)
         {

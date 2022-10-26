@@ -9,7 +9,7 @@ namespace Lab1.ANTLR4
 {
     public class CellReferencesFinder : ExpressionsBaseVisitor<object>
     {
-        public List<string> CellReference { get; } = new List<string>();
+        public HashSet<string> CellReference { get; } = new HashSet<string>();
 
         public override object VisitCellIdArExp([NotNull] ExpressionsParser.CellIdArExpContext context)
         {
