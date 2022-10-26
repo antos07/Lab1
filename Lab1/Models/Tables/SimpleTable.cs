@@ -149,7 +149,7 @@ namespace Lab1.Models.Tables
 
         private void ShiftRowIdForPredicateCells(Func<string, bool> predicate, int shift)
         {
-            var cellsToChange = _cells.Keys.Where(cellId => predicate(GetRowId(cellId)));
+            var cellsToChange = _cells.Keys.Where(cellId => predicate(GetRowId(cellId))).ToList();
             foreach (string cellId in cellsToChange)
             {
                 ICell cell = _cells[cellId];
@@ -182,7 +182,7 @@ namespace Lab1.Models.Tables
 
         private void ShiftColumnIdForPredicateCells(Func<string, bool> predicate, int shift)
         {
-            var cellsToChange = _cells.Keys.Where(cellId => predicate(GetColumnId(cellId)));
+            var cellsToChange = _cells.Keys.Where(cellId => predicate(GetColumnId(cellId))).ToList();
             foreach (string cellId in cellsToChange)
             {
                 ICell cell = _cells[cellId];

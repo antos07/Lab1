@@ -149,7 +149,9 @@ namespace Lab1
 
         private void deleteCurrentRowToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            DataGridViewCell cell = tableDataGridView.CurrentCell;
+            _controller.DeleteRow(cell.OwningRow.HeaderCell.Value.ToString());
+            ReloadTable();
         }
 
         private void deleteCurrentColumnToolStripMenuItem_Click(object sender, EventArgs e)
