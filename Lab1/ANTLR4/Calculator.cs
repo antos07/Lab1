@@ -12,10 +12,12 @@ namespace Lab1.Models.Parsers.antlr4
     public class Calculator : ExpressionsBaseVisitor<dynamic>
     {
         ITable _table;
+        Dictionary<string, string> _actualReferences;
 
-        public Calculator(ITable table)
+        public Calculator(ITable table, Dictionary<string, string> actualReferences)
         {
             _table = table;
+            _actualReferences = actualReferences;
         }
 
         public override dynamic VisitExpressionInCell([NotNull] ExpressionsParser.ExpressionInCellContext context)
@@ -50,7 +52,7 @@ namespace Lab1.Models.Parsers.antlr4
 
             try
             {
-                return _table.GetCell(cellID).GetValue();
+                return _table.GetCell(_actualReferences[cellID]).GetValue();
             }
             catch (InfiniteRecursionException)
             {
@@ -189,7 +191,7 @@ namespace Lab1.Models.Parsers.antlr4
 
             try
             {
-                ICell cell = _table.GetCell(cellID);
+                ICell cell = _table.GetCell(_actualReferences[cellID]);
                 return cell.Expression != null ? cell.GetValue() : BigRational.Zero;
             }
             catch (InfiniteRecursionException)

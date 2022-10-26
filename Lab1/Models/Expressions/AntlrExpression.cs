@@ -16,6 +16,7 @@ namespace Lab1.Models.Expressions
         private ExpressionsParser.ExpressionInCellContext _tree;
         private bool _calculating = false;
         private string _textRepresentation;
+        private Dictionary<string, string> _actualReferences = new();
 
         public AntlrExpression(ExpressionsParser.ExpressionInCellContext tree, string textRepresentation)
         {
@@ -23,6 +24,10 @@ namespace Lab1.Models.Expressions
             _textRepresentation = textRepresentation;
 
             ReferencedCells = FindCellReferences();
+            foreach (string cellId in ReferencedCells)
+            {
+                _actualReferences[cellId] = cellId;
+            }
         }
 
         public HashSet<string> ReferencedCells { get; }
@@ -32,7 +37,7 @@ namespace Lab1.Models.Expressions
             if (_calculating)
                 throw new Exceptions.InfiniteRecursionException($"Expression '{ToString()}' includes infinite recursion",
                     this, 0, ToString().Length);
-            var calculator = new Calculator(forTable);
+            var calculator = new Calculator(forTable, _actualReferences);
             _calculating = true;
             try
             {
@@ -70,10 +75,26 @@ namespace Lab1.Models.Expressions
 
         public void RenameReferences(Dictionary<string, string> renames)
         {
-            
+            foreach (var rename in renames)
+            {
+                _textRepresentation = _textRepresentation.Replace(rename.Key, rename.Value);
+            }
+            foreach (var oldCellID in renames.Keys)
+            {
+                ReferencedCells.Remove(oldCellID);
+            }
+            foreach (var newCellID in renames.Values)
+            {
+                ReferencedCells.Add(newCellID);
+            }
+            foreach (string cellId in _actualReferences.Keys)
+            {
+                if (renames.ContainsKey(_actualReferences[cellId]))
+                    _actualReferences[cellId] = renames[_actualReferences[cellId]];
+            }
         }
 
-        public virtual string ToString()
+        public override string ToString()
         {
             return _textRepresentation;
         }
