@@ -22,7 +22,7 @@ namespace Lab1.Models.Expressions
             _tree = tree;
             _textRepresentation = textRepresentation;
 
-            
+            ReferencedCells = FindCellReferences();
         }
 
         public List<string> ReferencedCells { get; }
@@ -73,9 +73,12 @@ namespace Lab1.Models.Expressions
             return _textRepresentation;
         }
 
-        private List<string> CalculateCellReferences()
+        private List<string> FindCellReferences()
         {
-            return new List<string>();
+            var finder = new CellReferencesFinder();
+            finder.Visit(_tree);
+
+            return finder.CellReference;
         }
     }
 }
