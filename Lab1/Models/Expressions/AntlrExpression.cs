@@ -21,9 +21,13 @@ namespace Lab1.Models.Expressions
         {
             _tree = tree;
             _textRepresentation = textRepresentation;
+
+            
         }
 
-        public object Calculate(ITable forTable)
+        public List<string> ReferencedCells { get; }
+
+        public virtual object Calculate(ITable forTable)
         {
             if (_calculating)
                 throw new Exceptions.InfiniteRecursionException($"Expression '{ToString()}' includes infinite recursion",
@@ -64,9 +68,14 @@ namespace Lab1.Models.Expressions
             }
         }
 
-        public string ToString()
+        public virtual string ToString()
         {
             return _textRepresentation;
+        }
+
+        private List<string> CalculateCellReferences()
+        {
+            return new List<string>();
         }
     }
 }

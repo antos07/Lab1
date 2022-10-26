@@ -9,8 +9,10 @@ namespace Lab1.Models.Expressions
 {
     public interface IExpression
     {
-        string ToString();
+        public List<string> ReferencedCells { get; }
 
-        object Calculate(ITable forTable);
+        public  string ToString();
+
+        public object Calculate(ITable forTable);
     }
 }
