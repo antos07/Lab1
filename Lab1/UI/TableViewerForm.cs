@@ -35,14 +35,14 @@ namespace Lab1
 
         private void TableViewerForm_Load(object sender, EventArgs e)
         {
-            SetupTableDataGridView();
-
-            DisplayAllExpressionValues();
-            UpdateAllErrorMessages();
+            ReloadTable();
         }
 
         private void TableViewerForm_FormClosing(object sender, FormClosingEventArgs e)
         {
+            if (!_controller.IsTableOpened())
+                return;
+
             switch (MessageBox.Show("Хочете зберегти у файл?", "Електронні таблиці", MessageBoxButtons.YesNoCancel))
             {
                 case DialogResult.Yes:
@@ -105,9 +105,57 @@ namespace Lab1
             SaveToFile();
         }
 
+        private void openTabelToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Хочете зберегти у файл?", "Електронні таблиці", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                SaveToFile();
+            }
+            _controller.CloseTable();
+            if (openFileDialog.ShowDialog(this) == DialogResult.OK && _controller.OpenTable(openFileDialog.FileName))
+            {
+                ReloadTable();
+            }
+            else
+            {
+                MessageBox.Show("Невдалося відкрити файл");
+                Close();
+            }
+        }
+
+        private void createNewTableToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Хочете зберегти у файл?", "Електронні таблиці", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                SaveToFile();
+            }
+            _controller.CloseTable();
+            _controller.CreteTable();
+            Close();
+            ReloadTable();
+        }
+
         #endregion
 
         #region tableDataGridView setup
+
+        void ReloadTable()
+        {
+            Enabled = false;
+            ClearTable();
+            SetupTableDataGridView();
+            Enabled = true;
+
+            DisplayAllExpressionValues();
+            UpdateAllErrorMessages();
+        }
+
+        void ClearTable()
+        {
+            updateAllCellsToolStripMenuItem.Checked = false;
+            tableDataGridView.Rows.Clear();
+            tableDataGridView.Columns.Clear();
+        }
 
         private void SetupTableDataGridView()
         {

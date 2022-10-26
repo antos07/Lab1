@@ -21,8 +21,10 @@ namespace Lab1.UI
         {
             if (openTableDialog.ShowDialog(this) == DialogResult.OK)
             {
-                _controller.OpenTable(openTableDialog.FileName);
-                OpenTable();
+                if (_controller.OpenTable(openTableDialog.FileName))
+                    OpenTable();
+                else
+                    MessageBox.Show("Невдалося відкрити");
             }
         }
 
@@ -31,7 +33,7 @@ namespace Lab1.UI
             using TableViewerForm tableViewerForm = new(_controller);
             Hide();
 
-            tableViewerForm.ShowDialog();
+            tableViewerForm.ShowDialog(this);
             Close();
         }
 
