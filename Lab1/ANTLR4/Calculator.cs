@@ -5,6 +5,7 @@ using ExtendedNumerics;
 using Antlr4.Runtime.Tree;
 using Lab1.Models.Expressions.Exceptions;
 using Antlr4.Runtime;
+using Lab1.Models.Cells;
 
 namespace Lab1.Models.Parsers.antlr4
 {
@@ -188,7 +189,8 @@ namespace Lab1.Models.Parsers.antlr4
 
             try
             {
-                return _table.GetCell(cellID).GetValue();
+                ICell cell = _table.GetCell(cellID);
+                return cell.Expression != null ? cell.GetValue() : BigRational.Zero;
             }
             catch (InfiniteRecursionException)
             {
