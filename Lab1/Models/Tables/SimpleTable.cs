@@ -166,9 +166,10 @@ namespace Lab1.Models.Tables
                     continue;
 
                 var cellsToChange = cell.Expression.ReferencedCells.Where(cellId => predicate(GetRowId(cellId)));
+                Dictionary<string, string> renames = new();
                 foreach (string referencedCellId in cellsToChange)
                 {
-                    cell.Expression.RenameReference(referencedCellId, GetCellIdWhithShiftedRow(referencedCellId, shift));
+                    renames[referencedCellId] = GetCellIdWhithShiftedRow(referencedCellId, shift);
                 }
             }
         }
@@ -198,9 +199,10 @@ namespace Lab1.Models.Tables
                     continue;
 
                 var cellsToChange = cell.Expression.ReferencedCells.Where(cellId => predicate(GetColumnId(cellId)));
+                Dictionary<string, string> renames = new();
                 foreach (string referencedCellId in cellsToChange)
                 {
-                    cell.Expression.RenameReference(referencedCellId, GetCellIdWhithShiftedColumn(referencedCellId, shift));
+                    renames[referencedCellId] = GetCellIdWhithShiftedColumn(referencedCellId, shift);
                 }
             }
         }

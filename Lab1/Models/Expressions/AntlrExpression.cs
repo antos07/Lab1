@@ -68,9 +68,9 @@ namespace Lab1.Models.Expressions
             }
         }
 
-        public void RenameReference(string oldCellId, string newCellId)
+        public void RenameReferences(Dictionary<string, string> renames)
         {
-            throw new NotImplementedException();
+            
         }
 
         public virtual string ToString()

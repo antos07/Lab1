@@ -23,7 +23,7 @@ namespace Lab1.Models.Expressions
             return false;
         }
 
-        public void RenameReference(string oldCellId, string newCellId)
+        public void RenameReferences(Dictionary<string, string> renames)
         {
         }
 
