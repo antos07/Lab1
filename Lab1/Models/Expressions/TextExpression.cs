@@ -23,6 +23,10 @@ namespace Lab1.Models.Expressions
             return false;
         }
 
+        public void RenameReference(string oldCellId, string newCellId)
+        {
+        }
+
         override public string ToString()
         {
             return _value;

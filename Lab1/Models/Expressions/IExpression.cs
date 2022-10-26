@@ -14,5 +14,7 @@ namespace Lab1.Models.Expressions
         public  string ToString();
 
         public object Calculate(ITable forTable);
+
+        public void RenameReference(string oldCellId, string newCellId);
     }
 }

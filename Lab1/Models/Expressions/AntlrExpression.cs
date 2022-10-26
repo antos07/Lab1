@@ -68,6 +68,11 @@ namespace Lab1.Models.Expressions
             }
         }
 
+        public void RenameReference(string oldCellId, string newCellId)
+        {
+            throw new NotImplementedException();
+        }
+
         public virtual string ToString()
         {
             return _textRepresentation;
