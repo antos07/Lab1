@@ -16,5 +16,9 @@ namespace Lab1.Models.Tables
         public ICell GetCell(string cell);
 
         public Dictionary<string, ICell> ExportCells();
+
+        public void DeleteRow(string rowId);
+
+        public void DeleteColumn(string columnId);
     }
 }

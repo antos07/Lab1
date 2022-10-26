@@ -72,5 +72,15 @@ namespace Lab1.Models.Tables
             foreach (string key in toRemove)
                 _cells.Remove(key);
         }
+
+        public void DeleteRow(string rowId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void DeleteColumn(string columnId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
