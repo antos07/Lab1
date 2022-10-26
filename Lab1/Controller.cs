@@ -122,5 +122,19 @@ namespace Lab1
         {
             return _table == null;
         }
+
+        public void DeleteRow(string rowID)
+        {
+            InsureTableOpened();
+
+            _table.DeleteRow(rowID);
+        }
+
+        public void DeleteColumn(string columnID)
+        {
+            InsureTableOpened();
+
+            _table.DeleteRow(columnID);
+        }
     }
 }
