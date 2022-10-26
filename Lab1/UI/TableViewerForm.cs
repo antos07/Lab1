@@ -24,6 +24,7 @@ namespace Lab1
             InitializeComponent();
             SetupHandlers();
 
+            tableDataGridView.EnableHeadersVisualStyles = false;
             _controller = controller;
         }
 
@@ -62,9 +63,13 @@ namespace Lab1
 
         private void tableDataGridView_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
         {
+            DataGridViewCell cell = tableDataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex];
+            cell.Style.BackColor = Color.AliceBlue;
+            cell.OwningRow.HeaderCell.Style.BackColor = Color.LightYellow;
+            cell.OwningColumn.HeaderCell.Style.BackColor = Color.LightYellow;
+
             if (!onlyExpressionsModeToolStripMenuItem.Checked)
             {
-                DataGridViewCell cell = tableDataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex];
                 DisplayCellExpression(cell);
             }
         }
@@ -72,6 +77,11 @@ namespace Lab1
         private void tableDataGridView_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
             DataGridViewCell cell = tableDataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex];
+
+            cell.Style.BackColor = SystemColors.Window;
+            cell.OwningRow.HeaderCell.Style.BackColor = SystemColors.Control;
+            cell.OwningColumn.HeaderCell.Style.BackColor = SystemColors.Control;
+
             if (cell.Value == null)
                 cell.Value = string.Empty;
             string newExpression = cell.Value.ToString();
@@ -135,6 +145,36 @@ namespace Lab1
             _controller.CreteTable();
             Close();
             ReloadTable();
+        }
+
+        private void deleteCurrentRowToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void deleteCurrentColumnToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void addRowBeforeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void addRowBelowToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void addColumnLefyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void addColumnRightToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
 
         #endregion
@@ -384,10 +424,5 @@ namespace Lab1
         }
 
         #endregion
-
-        private void deleteCurrentRowToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }
