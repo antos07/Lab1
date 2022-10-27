@@ -1,11 +1,14 @@
 ﻿using Antlr4.Runtime.Dfa;
 using Lab1.Models.Cells;
+using Lab1.Models.Tables.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using static Antlr4.Runtime.Atn.SemanticContext;
 
 namespace Lab1.Models.Tables
 {
@@ -38,12 +41,26 @@ namespace Lab1.Models.Tables
             RowsNumber = rowsNumber;
         }
 
-        public ICell GetCell(string cell)
+        public ICell GetCell(string cellId)
         {
             CleanIfNeeded();
-            if (!_cells.ContainsKey(cell))
-                _cells.Add(cell, new SimpleCell(this));
-            return _cells[cell];
+
+            if (!IsValidCellId(cellId))
+                throw new UnexistingCellException(cellId);
+
+            if (!_cells.ContainsKey(cellId))
+                _cells.Add(cellId, new SimpleCell(this));
+            return _cells[cellId];
+        }
+
+        private bool IsValidCellId(string cellId)
+        {
+            if (!Regex.IsMatch(cellId, @"^\w+\d+$"))
+                return false;
+            int columnIndex = GetColumnIndex(GetColumnId(cellId));
+            int rowIndex = GetRowIndex(GetRowId(cellId));
+
+            return rowIndex > 0 && rowIndex <= RowsNumber && columnIndex < ColumnsNumber;
         }
 
         public Dictionary<string, ICell> ExportCells()
@@ -78,14 +95,18 @@ namespace Lab1.Models.Tables
         {
             RemoveCellsWithRowId(rowId);
             int rowIndex = GetRowIndex(rowId);
-            ShiftRowIdForPredicate(rowId1 => GetRowIndex(rowId1) > rowIndex, -1);
+            ShiftRowIdForPredicateCells(rowId => GetRowIndex(rowId) > rowIndex, -1);
+            ShiftRowIdForPredicateReferences(rowId => GetRowIndex(rowId) >= rowIndex, -1);
+            RowsNumber--;
         }
 
         public void DeleteColumn(string columnId)
         {
             RemoveCellsWithColumnId(columnId);
             int columnIndex = GetColumnIndex(columnId);
-            ShiftColumnIdForPredicate(columnId1 => GetColumnIndex(columnId1) > columnIndex, -1);
+            ColumnsNumber--;
+            ShiftColumnIdForPredicateCells(columnId => GetColumnIndex(columnId) > columnIndex, -1);
+            ShiftColumnIdForPredicateReferences(columnId => GetColumnIndex(columnId) >= columnIndex, -1);
         }
 
         private void RemoveCellsWithRowId(string rowId)
@@ -119,13 +140,21 @@ namespace Lab1.Models.Tables
 
         private string GetColumnId(int columnIndex)
         {
-            string result = "";
+            if (columnIndex < 0)
+                return "#";
+
+            const int alphabetSize = 26;
+
+            StringBuilder name = new();
+            name.Append((char)('A' + columnIndex % alphabetSize));
+            columnIndex /= alphabetSize;
             while (columnIndex > 0)
             {
-                result += 'A' + columnIndex % 26;
-                columnIndex %= 26;
+                name.Append((char)('A' + columnIndex % alphabetSize - 1));
+                columnIndex /= alphabetSize;
             }
-            return result;
+
+            return new string(name.ToString().Reverse().ToArray());
         }
 
         private int GetRowIndex(string rowId) => Convert.ToInt32(rowId);
@@ -133,18 +162,12 @@ namespace Lab1.Models.Tables
         private int GetColumnIndex(string columnId)
         {
             int index = 0;
-            for (int i = columnId.Length - 1; i >= 0; i--)
+            foreach (char c in columnId)
             {
                 index *= 26;
-                index += columnId[i] - 'A';
+                index += c - 'A';
             }
             return index;
-        }
-
-        private void ShiftRowIdForPredicate(Func<string, bool> predicate, int shift)
-        {
-            ShiftRowIdForPredicateCells(predicate, shift);
-            ShiftRowIdForPredicateReferences(predicate, shift);
         }
 
         private void ShiftRowIdForPredicateCells(Func<string, bool> predicate, int shift)
@@ -171,13 +194,8 @@ namespace Lab1.Models.Tables
                 {
                     renames[referencedCellId] = GetCellIdWhithShiftedRow(referencedCellId, shift);
                 }
+                cell.Expression.RenameReferences(renames);
             }
-        }
-
-        private void ShiftColumnIdForPredicate(Func<string, bool> predicate, int shift)
-        {
-            ShiftColumnIdForPredicateCells(predicate, shift);
-            ShiftColumnIdForPredicateReferences(predicate, shift);
         }
 
         private void ShiftColumnIdForPredicateCells(Func<string, bool> predicate, int shift)
@@ -204,6 +222,7 @@ namespace Lab1.Models.Tables
                 {
                     renames[referencedCellId] = GetCellIdWhithShiftedColumn(referencedCellId, shift);
                 }
+                cell.Expression.RenameReferences(renames);
             }
         }
 

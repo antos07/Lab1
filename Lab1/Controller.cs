@@ -134,7 +134,7 @@ namespace Lab1
         {
             InsureTableOpened();
 
-            _table.DeleteRow(columnID);
+            _table.DeleteColumn(columnID);
         }
     }
 }

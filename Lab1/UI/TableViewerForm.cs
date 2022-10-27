@@ -12,12 +12,14 @@ using Lab1.Models.Expressions.Exceptions;
 using Lab1.Models.Expressions;
 using System.CodeDom;
 using ExtendedNumerics;
+using Lab1.Models.Tables.Exceptions;
 
 namespace Lab1
 {
     public partial class TableViewerForm : Form
     {
         private readonly Controller _controller;
+        private bool _skipExpressionSave = false;
 
         public TableViewerForm(Controller controller)
         {
@@ -82,6 +84,8 @@ namespace Lab1
             cell.OwningRow.HeaderCell.Style.BackColor = SystemColors.Control;
             cell.OwningColumn.HeaderCell.Style.BackColor = SystemColors.Control;
 
+            if (_skipExpressionSave)
+                return;
             if (cell.Value == null)
                 cell.Value = string.Empty;
             string newExpression = cell.Value.ToString();
@@ -150,13 +154,29 @@ namespace Lab1
         private void deleteCurrentRowToolStripMenuItem_Click(object sender, EventArgs e)
         {
             DataGridViewCell cell = tableDataGridView.CurrentCell;
+            int rowId = cell.RowIndex;
+            int columnId = cell.ColumnIndex;
+            
+            _skipExpressionSave = true;
             _controller.DeleteRow(cell.OwningRow.HeaderCell.Value.ToString());
             ReloadTable();
+            _skipExpressionSave = false;
+
+            tableDataGridView.CurrentCell = tableDataGridView.Rows[rowId].Cells[columnId];
         }
 
         private void deleteCurrentColumnToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            DataGridViewCell cell = tableDataGridView.CurrentCell;
+            int rowId = cell.RowIndex;
+            int columnId = cell.ColumnIndex;
 
+            _skipExpressionSave = true;
+            _controller.DeleteColumn(cell.OwningColumn.HeaderCell.Value.ToString());
+            ReloadTable();
+            _skipExpressionSave = false;
+
+            tableDataGridView.CurrentCell = tableDataGridView.Rows[rowId].Cells[columnId];
         }
 
         private void addRowBeforeToolStripMenuItem_Click(object sender, EventArgs e)
@@ -356,6 +376,10 @@ namespace Lab1
             catch (InfiniteRecursionException)
             {
                 return $"У виразі присутня нескінченна рекурсія";
+            }
+            catch (UnexistingCellException e)
+            {
+                return $"Посилання на неіснуючу клітинку '{e.CellId}'";
             }
             catch (WrongTypeException e)
             {
