@@ -242,12 +242,18 @@ namespace Lab1.Models.Tables
 
         public void InsertRow(string desiredRowId)
         {
-            throw new NotImplementedException();
+            RowsNumber++;
+            int rowIndex = GetRowIndex(desiredRowId);
+            ShiftColumnIdForPredicateCells(rowId => GetRowIndex(rowId) >= rowIndex, 1);
+            ShiftColumnIdForPredicateReferences(rowId => GetRowIndex(rowId) >= rowIndex, 1);
         }
 
         public void InsertColumn(string desiredColumnId)
         {
-            throw new NotImplementedException();
+            ColumnsNumber++;
+            int columnIndex = GetColumnIndex(desiredColumnId);
+            ShiftColumnIdForPredicateCells(columnId => GetColumnIndex(columnId) >= columnIndex, 1);
+            ShiftColumnIdForPredicateReferences(columnId => GetColumnIndex(columnId) >= columnIndex, 1);
         }
     }
 }
