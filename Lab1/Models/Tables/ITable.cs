@@ -20,5 +20,9 @@ namespace Lab1.Models.Tables
         public void DeleteRow(string rowId);
 
         public void DeleteColumn(string columnId);
+
+        public void InsertRow(string desiredRowId);
+
+        public void InsertColumn(string desiredColumnId);
     }
 }

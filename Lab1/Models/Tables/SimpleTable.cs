@@ -239,5 +239,15 @@ namespace Lab1.Models.Tables
             int columnIndex = GetColumnIndex(columnId);
             return GetColumnId(columnIndex + shift) + GetRowId(cellId);
         }
+
+        public void InsertRow(string desiredRowId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void InsertColumn(string desiredColumnId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
