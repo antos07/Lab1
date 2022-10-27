@@ -196,7 +196,7 @@ namespace Lab1
             onlyExpressionsModeToolStripMenuItem.Checked = isChecked;
             _skipExpressionSave = false;
 
-            tableDataGridView.CurrentCell = tableDataGridView.Rows[rowId].Cells[columnId];
+            tableDataGridView.CurrentCell = tableDataGridView.Rows[rowId + 1].Cells[columnId];
         }
 
         private void addRowBelowToolStripMenuItem_Click(object sender, EventArgs e)
@@ -217,12 +217,34 @@ namespace Lab1
 
         private void addColumnLefyToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            DataGridViewCell cell = tableDataGridView.CurrentCell;
+            int rowId = cell.RowIndex;
+            int columnId = cell.ColumnIndex;
 
+            _skipExpressionSave = true;
+            bool isChecked = onlyExpressionsModeToolStripMenuItem.Checked;
+            _controller.InsertColumn(cell.OwningColumn.HeaderCell.Value.ToString());
+            ReloadTable();
+            onlyExpressionsModeToolStripMenuItem.Checked = isChecked;
+            _skipExpressionSave = false;
+
+            tableDataGridView.CurrentCell = tableDataGridView.Rows[rowId].Cells[columnId + 1];
         }
 
         private void addColumnRightToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            DataGridViewCell cell = tableDataGridView.CurrentCell;
+            int rowId = cell.RowIndex;
+            int columnId = cell.ColumnIndex;
 
+            _skipExpressionSave = true;
+            bool isChecked = onlyExpressionsModeToolStripMenuItem.Checked;
+            _controller.InsertColumn(ColumnNameFromIndex(columnId + 1));
+            ReloadTable();
+            onlyExpressionsModeToolStripMenuItem.Checked = isChecked;
+            _skipExpressionSave = false;
+
+            tableDataGridView.CurrentCell = tableDataGridView.Rows[rowId].Cells[columnId];
         }
 
         #endregion
