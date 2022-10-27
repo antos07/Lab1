@@ -136,5 +136,19 @@ namespace Lab1
 
             _table.DeleteColumn(columnID);
         }
+
+        public void InsertRow(string rowID)
+        {
+            InsureTableOpened();
+
+            _table.InsertRow(rowID);
+        }
+
+        public void InsertColumn(string columnID)
+        {
+            InsureTableOpened();
+
+            _table.InsertColumn(columnID);
+        }
     }
 }
