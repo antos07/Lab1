@@ -157,12 +157,8 @@ namespace Lab1
             int rowId = cell.RowIndex;
             int columnId = cell.ColumnIndex;
             
-            _skipExpressionSave = true;
-            bool isChecked = onlyExpressionsModeToolStripMenuItem.Checked;
             _controller.DeleteRow(cell.OwningRow.HeaderCell.Value.ToString());
             ReloadTable();
-            onlyExpressionsModeToolStripMenuItem.Checked = isChecked;
-            _skipExpressionSave = false;
 
             tableDataGridView.CurrentCell = tableDataGridView.Rows[rowId].Cells[columnId];
         }
@@ -173,12 +169,8 @@ namespace Lab1
             int rowId = cell.RowIndex;
             int columnId = cell.ColumnIndex;
 
-            _skipExpressionSave = true;
-            bool isChecked = onlyExpressionsModeToolStripMenuItem.Checked;
             _controller.DeleteColumn(cell.OwningColumn.HeaderCell.Value.ToString());
             ReloadTable();
-            onlyExpressionsModeToolStripMenuItem.Checked = isChecked;
-            _skipExpressionSave = false;
 
             tableDataGridView.CurrentCell = tableDataGridView.Rows[rowId].Cells[columnId];
         }
@@ -189,12 +181,8 @@ namespace Lab1
             int rowId = cell.RowIndex;
             int columnId = cell.ColumnIndex;
 
-            _skipExpressionSave = true;
-            bool isChecked = onlyExpressionsModeToolStripMenuItem.Checked;
             _controller.InsertRow(cell.OwningRow.HeaderCell.Value.ToString());
             ReloadTable();
-            onlyExpressionsModeToolStripMenuItem.Checked = isChecked;
-            _skipExpressionSave = false;
 
             tableDataGridView.CurrentCell = tableDataGridView.Rows[rowId + 1].Cells[columnId];
         }
@@ -205,12 +193,8 @@ namespace Lab1
             int rowId = cell.RowIndex;
             int columnId = cell.ColumnIndex;
 
-            _skipExpressionSave = true;
-            bool isChecked = onlyExpressionsModeToolStripMenuItem.Checked;
             _controller.InsertRow((rowId + 2).ToString());
             ReloadTable();
-            onlyExpressionsModeToolStripMenuItem.Checked = isChecked;
-            _skipExpressionSave = false;
 
             tableDataGridView.CurrentCell = tableDataGridView.Rows[rowId].Cells[columnId];
         }
@@ -221,12 +205,8 @@ namespace Lab1
             int rowId = cell.RowIndex;
             int columnId = cell.ColumnIndex;
 
-            _skipExpressionSave = true;
-            bool isChecked = onlyExpressionsModeToolStripMenuItem.Checked;
             _controller.InsertColumn(cell.OwningColumn.HeaderCell.Value.ToString());
             ReloadTable();
-            onlyExpressionsModeToolStripMenuItem.Checked = isChecked;
-            _skipExpressionSave = false;
 
             tableDataGridView.CurrentCell = tableDataGridView.Rows[rowId].Cells[columnId + 1];
         }
@@ -237,12 +217,8 @@ namespace Lab1
             int rowId = cell.RowIndex;
             int columnId = cell.ColumnIndex;
 
-            _skipExpressionSave = true;
-            bool isChecked = onlyExpressionsModeToolStripMenuItem.Checked;
             _controller.InsertColumn(ColumnNameFromIndex(columnId + 1));
             ReloadTable();
-            onlyExpressionsModeToolStripMenuItem.Checked = isChecked;
-            _skipExpressionSave = false;
 
             tableDataGridView.CurrentCell = tableDataGridView.Rows[rowId].Cells[columnId];
         }
@@ -254,20 +230,21 @@ namespace Lab1
         void ReloadTable()
         {
             Enabled = false;
+            _skipExpressionSave = true;
             ClearTable();
             SetupTableDataGridView();
-            Enabled = true;
 
             if (onlyExpressionsModeToolStripMenuItem.Checked)
                 DisplayAllExpressions();
             else
                 DisplayAllExpressionValues();
             UpdateAllErrorMessages();
+            _skipExpressionSave = false;
+            Enabled = true;
         }
 
         void ClearTable()
         {
-            updateAllCellsToolStripMenuItem.Checked = false;
             tableDataGridView.Rows.Clear();
             tableDataGridView.Columns.Clear();
         }
@@ -501,5 +478,11 @@ namespace Lab1
         }
 
         #endregion
+
+        private void aboutProgramToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var abotBox = new AboutBox();
+            abotBox.ShowDialog(this);
+        }
     }
 }

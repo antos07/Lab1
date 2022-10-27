@@ -217,6 +217,7 @@
             this.aboutProgramToolStripMenuItem.Name = "aboutProgramToolStripMenuItem";
             this.aboutProgramToolStripMenuItem.Size = new System.Drawing.Size(448, 54);
             this.aboutProgramToolStripMenuItem.Text = "Про програму";
+            this.aboutProgramToolStripMenuItem.Click += new System.EventHandler(this.aboutProgramToolStripMenuItem_Click);
             // 
             // tableDataGridView
             // 
