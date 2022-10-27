@@ -158,8 +158,10 @@ namespace Lab1
             int columnId = cell.ColumnIndex;
             
             _skipExpressionSave = true;
+            bool isChecked = onlyExpressionsModeToolStripMenuItem.Checked;
             _controller.DeleteRow(cell.OwningRow.HeaderCell.Value.ToString());
             ReloadTable();
+            onlyExpressionsModeToolStripMenuItem.Checked = isChecked;
             _skipExpressionSave = false;
 
             tableDataGridView.CurrentCell = tableDataGridView.Rows[rowId].Cells[columnId];
@@ -172,8 +174,10 @@ namespace Lab1
             int columnId = cell.ColumnIndex;
 
             _skipExpressionSave = true;
+            bool isChecked = onlyExpressionsModeToolStripMenuItem.Checked;
             _controller.DeleteColumn(cell.OwningColumn.HeaderCell.Value.ToString());
             ReloadTable();
+            onlyExpressionsModeToolStripMenuItem.Checked = isChecked;
             _skipExpressionSave = false;
 
             tableDataGridView.CurrentCell = tableDataGridView.Rows[rowId].Cells[columnId];
@@ -181,12 +185,34 @@ namespace Lab1
 
         private void addRowBeforeToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            DataGridViewCell cell = tableDataGridView.CurrentCell;
+            int rowId = cell.RowIndex;
+            int columnId = cell.ColumnIndex;
 
+            _skipExpressionSave = true;
+            bool isChecked = onlyExpressionsModeToolStripMenuItem.Checked;
+            _controller.InsertRow(cell.OwningRow.HeaderCell.Value.ToString());
+            ReloadTable();
+            onlyExpressionsModeToolStripMenuItem.Checked = isChecked;
+            _skipExpressionSave = false;
+
+            tableDataGridView.CurrentCell = tableDataGridView.Rows[rowId].Cells[columnId];
         }
 
         private void addRowBelowToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            DataGridViewCell cell = tableDataGridView.CurrentCell;
+            int rowId = cell.RowIndex;
+            int columnId = cell.ColumnIndex;
 
+            _skipExpressionSave = true;
+            bool isChecked = onlyExpressionsModeToolStripMenuItem.Checked;
+            _controller.InsertRow((rowId + 2).ToString());
+            ReloadTable();
+            onlyExpressionsModeToolStripMenuItem.Checked = isChecked;
+            _skipExpressionSave = false;
+
+            tableDataGridView.CurrentCell = tableDataGridView.Rows[rowId].Cells[columnId];
         }
 
         private void addColumnLefyToolStripMenuItem_Click(object sender, EventArgs e)
@@ -210,7 +236,10 @@ namespace Lab1
             SetupTableDataGridView();
             Enabled = true;
 
-            DisplayAllExpressionValues();
+            if (onlyExpressionsModeToolStripMenuItem.Checked)
+                DisplayAllExpressions();
+            else
+                DisplayAllExpressionValues();
             UpdateAllErrorMessages();
         }
 

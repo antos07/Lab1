@@ -209,13 +209,13 @@
             // openHelpToolStripMenuItem
             // 
             this.openHelpToolStripMenuItem.Name = "openHelpToolStripMenuItem";
-            this.openHelpToolStripMenuItem.Size = new System.Drawing.Size(382, 54);
+            this.openHelpToolStripMenuItem.Size = new System.Drawing.Size(448, 54);
             this.openHelpToolStripMenuItem.Text = "Допомога";
             // 
             // aboutProgramToolStripMenuItem
             // 
             this.aboutProgramToolStripMenuItem.Name = "aboutProgramToolStripMenuItem";
-            this.aboutProgramToolStripMenuItem.Size = new System.Drawing.Size(382, 54);
+            this.aboutProgramToolStripMenuItem.Size = new System.Drawing.Size(448, 54);
             this.aboutProgramToolStripMenuItem.Text = "Про програму";
             // 
             // tableDataGridView

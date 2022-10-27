@@ -244,8 +244,8 @@ namespace Lab1.Models.Tables
         {
             RowsNumber++;
             int rowIndex = GetRowIndex(desiredRowId);
-            ShiftColumnIdForPredicateCells(rowId => GetRowIndex(rowId) >= rowIndex, 1);
-            ShiftColumnIdForPredicateReferences(rowId => GetRowIndex(rowId) >= rowIndex, 1);
+            ShiftRowIdForPredicateCells(rowId => GetRowIndex(rowId) >= rowIndex, 1);
+            ShiftRowIdForPredicateReferences(rowId => GetRowIndex(rowId) >= rowIndex, 1);
         }
 
         public void InsertColumn(string desiredColumnId)

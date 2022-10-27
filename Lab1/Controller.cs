@@ -114,13 +114,13 @@ namespace Lab1
 
         private void InsureTableOpened()
         {
-            if (IsTableOpened())
+            if (!IsTableOpened())
                 throw new ApplicationException();
         }
 
         public bool IsTableOpened()
         {
-            return _table == null;
+            return _table != null;
         }
 
         public void DeleteRow(string rowID)
