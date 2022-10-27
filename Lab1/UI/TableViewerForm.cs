@@ -223,6 +223,18 @@ namespace Lab1
             tableDataGridView.CurrentCell = tableDataGridView.Rows[rowId].Cells[columnId];
         }
 
+        private void aboutProgramToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using var abotBox = new AboutBox();
+            abotBox.ShowDialog(this);
+        }
+
+        private void openHelpToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using var helpForm = new HelpForm();
+            helpForm.ShowDialog(this);
+        }
+
         #endregion
 
         #region tableDataGridView setup
@@ -478,11 +490,5 @@ namespace Lab1
         }
 
         #endregion
-
-        private void aboutProgramToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            var abotBox = new AboutBox();
-            abotBox.ShowDialog(this);
-        }
     }
 }

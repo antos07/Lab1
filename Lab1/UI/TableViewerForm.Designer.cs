@@ -211,6 +211,7 @@
             this.openHelpToolStripMenuItem.Name = "openHelpToolStripMenuItem";
             this.openHelpToolStripMenuItem.Size = new System.Drawing.Size(448, 54);
             this.openHelpToolStripMenuItem.Text = "Допомога";
+            this.openHelpToolStripMenuItem.Click += new System.EventHandler(this.openHelpToolStripMenuItem_Click);
             // 
             // aboutProgramToolStripMenuItem
             // 
