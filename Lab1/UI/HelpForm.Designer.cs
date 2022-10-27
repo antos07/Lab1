@@ -28,20 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.helpText = new System.Windows.Forms.TextBox();
+            this.helpText = new System.Windows.Forms.RichTextBox();
             this.SuspendLayout();
             // 
             // helpText
             // 
-            this.helpText.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.helpText.Dock = System.Windows.Forms.DockStyle.Fill;
             this.helpText.Location = new System.Drawing.Point(0, 0);
-            this.helpText.Multiline = true;
             this.helpText.Name = "helpText";
-            this.helpText.ReadOnly = true;
+            this.helpText.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.helpText.Size = new System.Drawing.Size(1067, 794);
             this.helpText.TabIndex = 0;
-            this.helpText.TabStop = false;
+            this.helpText.Text = "";
             // 
             // HelpForm
             // 
@@ -54,13 +52,13 @@
             this.MinimizeBox = false;
             this.Name = "HelpForm";
             this.Text = "Допомога";
+            this.Load += new System.EventHandler(this.HelpForm_Load);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
-        private TextBox helpText;
+        private RichTextBox helpText;
     }
 }

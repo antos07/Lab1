@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Lab1.Properties;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +16,11 @@ namespace Lab1
         public HelpForm()
         {
             InitializeComponent();
+        }
+
+        private void HelpForm_Load(object sender, EventArgs e)
+        {
+            helpText.SelectedRtf = Resources.HelpText;
         }
     }
 }
