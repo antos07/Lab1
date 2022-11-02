@@ -1,5 +1,4 @@
 ﻿using Antlr4.Runtime.Misc;
-using Lab1.ANTLR4;
 using Lab1.Models.Tables;
 using ExtendedNumerics;
 using Antlr4.Runtime.Tree;
@@ -7,7 +6,7 @@ using Lab1.Models.Expressions.Exceptions;
 using Antlr4.Runtime;
 using Lab1.Models.Cells;
 
-namespace Lab1.Models.Parsers.antlr4
+namespace Lab1.ANTLR4
 {
     public class Calculator : ExpressionsBaseVisitor<dynamic>
     {

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Lab1.Models.Expressions;
 
-namespace Lab1.Parsers
+namespace Lab1.Models.Parsers
 {
     public interface IParser
     {

@@ -3,7 +3,6 @@ using Lab1.Models.Expressions;
 using ExpExceptions = Lab1.Models.Expressions.Exceptions;
 using Lab1.Models.Parsers.Exceptions;
 using Lab1.Models.Tables;
-using Lab1.Parsers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms.Design;
 using Lab1.Utils;
+using Lab1.Models.Parsers;
 
 namespace Lab1
 {
