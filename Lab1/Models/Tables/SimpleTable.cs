@@ -172,7 +172,9 @@ namespace Lab1.Models.Tables
 
         private void ShiftRowIdForPredicateCells(Func<string, bool> predicate, int shift)
         {
-            var cellsToChange = _cells.Keys.Where(cellId => predicate(GetRowId(cellId))).ToList();
+            var cellsToChange = shift < 0 
+                ? _cells.Keys.Where(cellId => predicate(GetRowId(cellId))).OrderBy(cellId => GetRowId(cellId)).ToList()
+                : _cells.Keys.Where(cellId => predicate(GetRowId(cellId))).OrderByDescending(cellId => GetRowId(cellId)).ToList();
             foreach (string cellId in cellsToChange)
             {
                 ICell cell = _cells[cellId];
@@ -200,7 +202,9 @@ namespace Lab1.Models.Tables
 
         private void ShiftColumnIdForPredicateCells(Func<string, bool> predicate, int shift)
         {
-            var cellsToChange = _cells.Keys.Where(cellId => predicate(GetColumnId(cellId))).ToList();
+            var cellsToChange = shift < 0 
+                ? _cells.Keys.Where(cellId => predicate(GetColumnId(cellId))).OrderBy(cellId => GetColumnId(cellId)).ToList()
+                : _cells.Keys.Where(cellId => predicate(GetColumnId(cellId))).OrderByDescending(cellId => GetColumnId(cellId)).ToList();
             foreach (string cellId in cellsToChange)
             {
                 ICell cell = _cells[cellId];
